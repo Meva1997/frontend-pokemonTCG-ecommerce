@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pokémon TCG E‑Commerce (Frontend)
+
+Status: In early development (work in progress)
+
+A simple Next.js + TypeScript + Tailwind CSS frontend for a future Pokémon TCG e‑commerce site (browse cards, add to cart, and later checkout).
+
+## Tech Stack
+- Next.js
+- TypeScript
+- Tailwind CSS
+- (Planned) Pokémon TCG API integration
+- (Planned) Auth + Stripe payments
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
-npm run dev
+# Clone
+git clone https://github.com/Meva1997/frontend-pokemonTCG-ecommerce.git
+cd frontend-pokemonTCG-ecommerce
+
+# Install (choose one)
+pnpm install
 # or
-yarn dev
+yarn install
 # or
+npm install
+
+# Run dev server
 pnpm dev
-# or
-bun dev
+# or yarn dev / npm run dev
+
+# Build
+pnpm build
+pnpm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment (planned)
+Create a `.env.local` later with things like:
+```
+POKEMON_TCG_API_KEY=your_key
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Current Focus
+- Basic page structure
+- Card listing layout
+- Shared UI components
+- Styling system
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Short Roadmap
+- [ ] Fetch real card data
+- [ ] Product detail page
+- [ ] Cart state
+- [ ] Simple checkout mock
+- [ ] Auth (NextAuth or custom)
+- [ ] Stripe integration
+- [ ] Basic tests
 
-## Learn More
+## Contributing (later)
+Open an issue or PR once the base structure is stable.
 
-To learn more about Next.js, take a look at the following resources:
+## License
+Not defined yet.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+(Temporary README – will expand as features land.)

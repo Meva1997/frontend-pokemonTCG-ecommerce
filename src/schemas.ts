@@ -24,6 +24,15 @@ export const RegisterSchema = z
     path: ["confirmPassword"],
   });
 
+export const UserSchema = z.object({
+  id: z.number(),
+  userName: z.string(),
+  email: z.email(),
+  isAdmin: z.boolean(),
+});
+
+export type User = z.infer<typeof UserSchema>;
+
 //! Success Schema
 export const SuccessSchema = z.string();
 

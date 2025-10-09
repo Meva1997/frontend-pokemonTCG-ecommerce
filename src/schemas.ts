@@ -33,6 +33,17 @@ export const UserSchema = z.object({
 
 export type User = z.infer<typeof UserSchema>;
 
+export const UsersTableSchema = UserSchema.extend({
+  confirmed: z.boolean(),
+}).array();
+
+export type UsersTable = z.infer<typeof UsersTableSchema>;
+
+export const UpdateAccountSchema = z.object({
+  userName: z.string().min(3, "Username must be at least 3 characters"),
+  email: z.email("Invalid email address").optional(),
+});
+
 //! Success Schema
 export const SuccessSchema = z.string();
 

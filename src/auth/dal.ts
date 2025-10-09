@@ -1,5 +1,5 @@
 //data access layer
-
+import "server-only";
 import { cache } from "react";
 import { cookies } from "next/headers";
 import { UserSchema } from "../schemas";

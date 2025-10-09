@@ -1,5 +1,6 @@
 import { verifySession } from "@/src/auth/dal";
 import Link from "next/link";
+import LogoutForm from "./LogoutForm";
 
 export default async function UserNav() {
   async function getSessionSafely() {
@@ -42,14 +43,7 @@ export default async function UserNav() {
               Admin
             </Link>
           )}
-          <form action="/auth/logout" method="post">
-            <button
-              type="submit"
-              className="rounded-lg bg-purple-600 px-4 text-white hover:bg-purple-700 cursor-pointer"
-            >
-              Logout
-            </button>
-          </form>
+          <LogoutForm />
         </nav>
       )}
     </>

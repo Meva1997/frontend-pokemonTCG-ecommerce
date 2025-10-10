@@ -1,8 +1,8 @@
 import { verifySession } from "@/src/auth/dal";
 import { redirect } from "next/navigation";
 import SideBar from "@/components/admin/SideBar";
-import UsersTable from "@/components/admin/UsersTable";
-import Link from "next/link";
+import UsersTableEntry from "@/components/admin/users/UsersTableEntry";
+import AddUserButton from "@/components/admin/users/AddUserButton";
 
 export default async function AdminPage() {
   const { user } = await verifySession();
@@ -24,16 +24,13 @@ export default async function AdminPage() {
             <h2 className="text-4xl font-bold text-gray-900 dark:text-white">
               Users
             </h2>
-            <Link
-              href="/admin/createUser"
-              className="flex items-center justify-center gap-2 px-4 py-2 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors my-4 bg-purple-500 w-1/6 hover:bg-purple-600"
-            >
-              <p>Add User</p>
-            </Link>
+            <div className="flex items-center justify-center gap-2 px-4 py-2 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors my-4 bg-purple-500 w-1/6 hover:bg-purple-600">
+              <AddUserButton />
+            </div>
           </div>
 
           {/* Users Table */}
-          <UsersTable />
+          <UsersTableEntry />
         </div>
       </main>
     </div>

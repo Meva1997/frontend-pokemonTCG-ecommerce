@@ -2,7 +2,6 @@ import { verifySession } from "@/src/auth/dal";
 import { redirect } from "next/navigation";
 import SideBar from "@/components/admin/SideBar";
 import UsersTable from "@/components/admin/UsersTable";
-import UserSearchBar from "@/components/admin/UserSearchBar";
 import Link from "next/link";
 
 export default async function AdminPage() {
@@ -32,9 +31,6 @@ export default async function AdminPage() {
               <p>Add User</p>
             </Link>
           </div>
-
-          {/* Search Bar */}
-          <UserSearchBar />
 
           {/* Users Table */}
           <UsersTable />

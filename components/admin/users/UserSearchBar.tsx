@@ -16,7 +16,7 @@ export default function UserSearchBar({ searchTerm, setSearchTerm }: Props) {
             value={searchTerm}
             onChange={handleInputChange}
             className="w-full pl-12 pr-4 py-3 bg-white dark:bg-black/20 border border-gray-200 dark:border-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-primary dark:focus-ring-primary transition-colors"
-            placeholder="Buscar usuarios por nombre, email, rol (admin/user) o estado (confirmed/unconfirmed)..."
+            placeholder="Search users by name, email, role (admin/user) or status (confirmed/unconfirmed)..."
             type="text"
           />
         </div>

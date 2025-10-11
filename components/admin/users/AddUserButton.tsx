@@ -1,7 +1,9 @@
 "use client";
+import { AdminUserCreateAction } from "@/actions/admin-userCreate-action";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 import { Button, Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
-import { useState } from "react";
-import AddUserForm from "./AddUserForm";
+import { useActionState, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export default function AddUserButton() {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,11 +16,27 @@ export default function AddUserButton() {
     setIsOpen(false);
   }
 
+  const [state, dispatch, isPending] = useActionState(AdminUserCreateAction, {
+    errors: [],
+    success: "",
+  });
+
+  useEffect(() => {
+    if (state.errors.length) {
+      state.errors.forEach((err) => toast.error(err));
+    }
+
+    if (state.success) {
+      toast.success(state.success);
+      close();
+    }
+  }, [state]);
+
   return (
     <>
       <Button
         onClick={open}
-        className="flex items-center justify-center gap-2 px-4 py-2 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors"
+        className="flex items-center justify-center gap-2 px-4 py-2 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors outline-none"
       >
         <svg
           className="w-4 h-4"
@@ -55,10 +73,87 @@ export default function AddUserButton() {
                 as="h3"
                 className="text-lg font-semibold text-gray-900 dark:text-white mb-4"
               >
-                Add New User
+                Add New Admin User
               </DialogTitle>
 
-              <AddUserForm close={close} />
+              <form className="space-y-4" action={dispatch}>
+                {/* Username Field */}
+                <div>
+                  <label
+                    htmlFor="userName"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                  >
+                    Username
+                  </label>
+                  <input
+                    id="userName"
+                    name="userName"
+                    type="text"
+                    placeholder="Enter username"
+                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+                  />
+                </div>
+
+                {/* Email Field */}
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                  >
+                    Email Address
+                  </label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="user@example.com"
+                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+                  />
+                </div>
+
+                {/* Password Field */}
+                <div>
+                  <label
+                    htmlFor="password"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                  >
+                    Password
+                  </label>
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    placeholder="••••••••"
+                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+                  />
+                </div>
+
+                {/* Role Field */}
+                <input type="hidden" name="isAdmin" value="true" />
+
+                {/* Form Actions */}
+                <div className="flex gap-3 pt-4">
+                  {isPending ? (
+                    <LoadingSpinner />
+                  ) : (
+                    <>
+                      <Button
+                        type="button"
+                        onClick={close}
+                        className="flex-1 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        Cancel
+                      </Button>
+                      <Button
+                        type="submit"
+                        className="flex-1 px-4 py-2 text-sm font-medium text-white bg-purple-500 hover:bg-purple-700 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center cursor-pointer"
+                      >
+                        send{" "}
+                      </Button>
+                    </>
+                  )}
+                </div>
+              </form>
             </DialogPanel>
           </div>
         </div>

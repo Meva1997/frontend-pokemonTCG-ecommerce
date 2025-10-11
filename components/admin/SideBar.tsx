@@ -1,7 +1,14 @@
+"use client";
 import Link from "next/link";
-import React from "react";
+import { usePathname } from "next/navigation";
 
 export default function SideBar() {
+  const pathname = usePathname();
+
+  const isActive = () => {
+    return "bg-purple-500 text-white hover:bg-purple-700 p-2 rounded-lg";
+  };
+
   return (
     <aside className="w-64 bg-background-light dark:bg-background-dark border-r-4 border-gray-500 dark:border-white/10 flex flex-col">
       <div className="p-6">
@@ -11,10 +18,22 @@ export default function SideBar() {
       </div>
       <nav className="flex-1 px-4 py-2 space-y-1">
         <Link
-          href="/admin"
-          className="flex items-center gap-3 px-3 py-2 text-white bg-primary rounded-lg"
+          href="/admin/users"
+          className={`flex items-center gap-3 px-3 py-2 text-white rounded-lg ${
+            pathname === "/admin/users" ? isActive() : "bg-primary"
+          }`}
         >
           <span className="font-semibold">Users</span>
+        </Link>
+        <Link
+          href="/admin/products"
+          className={`flex items-center gap-3 px-3 py-2 text-white rounded-lg ${
+            pathname === "/admin/products"
+              ? isActive()
+              : "hover:bg-gray-400 dark:hover:bg-gray-700"
+          }`}
+        >
+          <span className="font-semibold">Products</span>
         </Link>
       </nav>
     </aside>

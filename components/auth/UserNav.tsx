@@ -39,7 +39,7 @@ export default async function UserNav() {
             Account
           </Link>
           {session.user.isAdmin && (
-            <Link href="/admin" className="self-center text-white">
+            <Link href="/admin/users" className="self-center text-white">
               Admin
             </Link>
           )}

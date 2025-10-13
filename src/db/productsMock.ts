@@ -1,6 +1,6 @@
 // Tipos para los productos
 type Product = {
-  id: string;
+  id: number;
   name: string;
   description: string;
   image: string;
@@ -12,9 +12,9 @@ type Product = {
 
 export const sampleProductsAdmin: Product[] = [
   {
-    id: "1",
+    id: 1,
     name: "Charizard VMAX",
-    description: "#020/073 - Champion's Path",
+    description: "020/073 - Champion's Path",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuBH_HVTiFRcPVEnwZplTI_gpXBqw4cnyz5thHakcuQ2WKOcSeNrV1dxUw1n0x1HqTdqEniEIHE3Rvf2Sp6-2zkcRcTzhoyIVP_AVxDRRv10PLQO8AZEeqXnds8j5__XTLpRhaS8bWYss1RoI1ZIo1FIzWsuMIoLAIfOv9CsUa9yU3PItuKhfAqgonAhdTRRn-SPBZL3WgrCwHPPAJMzg2spOhN7QvqDwucgtccKMls9TWSDrPqP-ltlbrXP6STDnEKzlB675DIJ20Ub",
     stock: 12,
@@ -23,7 +23,7 @@ export const sampleProductsAdmin: Product[] = [
     createdAt: "2023-10-26",
   },
   {
-    id: "2",
+    id: 2,
     name: "Pikachu V-UNION Box",
     description: "Celebrations Collection",
     image:
@@ -34,7 +34,7 @@ export const sampleProductsAdmin: Product[] = [
     createdAt: "2023-10-25",
   },
   {
-    id: "3",
+    id: 3,
     name: "Evolving Skies Booster Box",
     description: "36 Booster Packs",
     image:
@@ -45,7 +45,7 @@ export const sampleProductsAdmin: Product[] = [
     createdAt: "2023-10-22",
   },
   {
-    id: "4",
+    id: 4,
     name: "Ultra Pro Sleeves",
     description: "100-pack, Clear",
     image:
@@ -58,7 +58,7 @@ export const sampleProductsAdmin: Product[] = [
 ];
 
 type Product2 = {
-  id: string;
+  id: number;
   name: string;
   description: string;
   image: string;
@@ -70,7 +70,7 @@ type Product2 = {
 // Datos de ejemplo
 export const sampleProducts: Product2[] = [
   {
-    id: "1",
+    id: 1,
     name: "Charizard - Base Set",
     description:
       "Una de las cartas más icónicas y buscadas del TCG de Pokémon.",
@@ -81,7 +81,7 @@ export const sampleProducts: Product2[] = [
     category: "Carta Individual",
   },
   {
-    id: "2",
+    id: 2,
     name: "Blastoise - Base Set",
     description:
       "La poderosa evolución final de Squirtle, un clásico de la primera generación.",
@@ -92,7 +92,7 @@ export const sampleProducts: Product2[] = [
     category: "Carta Individual",
   },
   {
-    id: "3",
+    id: 3,
     name: "Venusaur - Base Set",
     description:
       "La forma final de Bulbasaur, una carta esencial para coleccionistas.",
@@ -103,7 +103,7 @@ export const sampleProducts: Product2[] = [
     category: "Carta Individual",
   },
   {
-    id: "4",
+    id: 4,
     name: "Pikachu - Base Set",
     description:
       "La mascota icónica de Pokémon, una adición adorable y valiosa.",
@@ -114,7 +114,7 @@ export const sampleProducts: Product2[] = [
     category: "Carta Individual",
   },
   {
-    id: "5",
+    id: 5,
     name: "Espada y Escudo - Origen Perdido",
     description:
       "Caja de sobres de la expansión Origen Perdido. Contiene 36 sobres.",
@@ -125,7 +125,7 @@ export const sampleProducts: Product2[] = [
     category: "Booster Box",
   },
   {
-    id: "6",
+    id: 6,
     name: "Obsidian Flames ETB",
     description:
       "Caja de Entrenador Élite de Llamas de Obsidiana. Ideal para empezar.",
@@ -136,7 +136,7 @@ export const sampleProducts: Product2[] = [
     category: "Elite Trainer Box",
   },
   {
-    id: "7",
+    id: 7,
     name: "Fundas protectoras Ultra Pro",
     description: "Paquete de 100 fundas para proteger tus cartas más valiosas.",
     image:
@@ -146,7 +146,7 @@ export const sampleProducts: Product2[] = [
     category: "Accesorio",
   },
   {
-    id: "8",
+    id: 8,
     name: "Caja Celebrations Pikachu V-UNION",
     description: "Una colección especial para celebrar los 25 años de Pokémon.",
     image:

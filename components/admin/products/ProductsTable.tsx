@@ -1,22 +1,27 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import React, { Suspense, useState } from "react";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
-import { sampleProductsAdmin } from "@/src/db/productsMock";
-import { formatCurrency } from "@/utils";
+import { formatCurrency, formatDate } from "@/utils";
 import ProductsSearchBar from "./ProductsSearchBar";
+import Link from "next/link";
+import { ProductsArrayType } from "@/src/schemas";
+import Image from "next/image";
 
-export default function ProductsTable() {
+export default function ProductsTable({
+  products,
+}: {
+  products: ProductsArrayType;
+}) {
   const [searchTerm, setSearchTerm] = useState("");
-  const [products] = useState(sampleProductsAdmin);
+  const [productsFilter] = useState(products);
 
   // Filtrar productos por búsqueda
-  const filteredProducts = products.filter(
-    (product) =>
-      product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      product.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      product.category.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredProducts = productsFilter.filter(
+    (products) =>
+      products.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      products.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      products.categoryId.toString().includes(searchTerm.toLowerCase())
   );
 
   // Función para obtener el badge de stock
@@ -42,13 +47,6 @@ export default function ProductsTable() {
     }
   };
 
-  const router = useRouter();
-
-  const getProductDetailLink = (slug: string) => {
-    const productLink = router.push(`/admin/products/${slug}`);
-    return productLink;
-  };
-
   return (
     <div className="max-w-7xl mx-auto">
       {/* Search Bar */}
@@ -58,32 +56,32 @@ export default function ProductsTable() {
       />
 
       {/* Table */}
-      <div className="overflow-x-auto bg-white dark:bg-black/20 rounded-lg border border-gray-200 dark:border-white/10">
-        <table className="w-full text-left">
-          <thead className="border-b border-gray-200 dark:border-white/10">
-            <tr>
-              <th className="px-6 py-4 font-semibold text-gray-700 dark:text-gray-300">
-                Product
-              </th>
-              <th className="px-6 py-4 font-semibold text-gray-700 dark:text-gray-300">
-                Stock
-              </th>
-              <th className="px-6 py-4 font-semibold text-gray-700 dark:text-gray-300">
-                Price
-              </th>
-              <th className="px-6 py-4 font-semibold text-gray-700 dark:text-gray-300">
-                Category
-              </th>
-              <th className="px-6 py-4 font-semibold text-gray-700 dark:text-gray-300">
-                Created At
-              </th>
-              <th className="px-6 py-4 font-semibold text-gray-700 dark:text-gray-300 text-right">
-                Actions
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <Suspense fallback={<LoadingSpinner />}>
+      <Suspense fallback={<LoadingSpinner />}>
+        <div className="overflow-x-auto bg-white dark:bg-black/20 rounded-lg border border-gray-200 dark:border-white/10">
+          <table className="w-full text-left">
+            <thead className="border-b border-gray-200 dark:border-white/10">
+              <tr>
+                <th className="px-6 py-4 font-semibold text-gray-700 dark:text-gray-300">
+                  Product
+                </th>
+                <th className="px-6 py-4 font-semibold text-gray-700 dark:text-gray-300">
+                  Stock
+                </th>
+                <th className="px-6 py-4 font-semibold text-gray-700 dark:text-gray-300">
+                  Price
+                </th>
+                <th className="px-6 py-4 font-semibold text-gray-700 dark:text-gray-300">
+                  Category
+                </th>
+                <th className="px-6 py-4 font-semibold text-gray-700 dark:text-gray-300">
+                  Created At
+                </th>
+                <th className="px-6 py-4 font-semibold text-gray-700 dark:text-gray-300 text-right">
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody>
               {filteredProducts.length === 0 ? (
                 <tr>
                   <td colSpan={6} className="px-6 py-8 text-center">
@@ -101,17 +99,18 @@ export default function ProductsTable() {
                   <tr
                     key={product.id}
                     className="border-b border-gray-200 dark:border-white/10 last:border-b-0 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
-                    onClick={() => getProductDetailLink(product.id)}
                   >
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center gap-4">
                         <div className="w-12 h-12 rounded-md bg-gray-200 dark:bg-white/10 flex items-center justify-center overflow-hidden">
-                          <img
+                          <Image
                             src={product.image}
                             alt={product.name}
                             width={40}
                             height={40}
                             className="w-auto object-contain"
+                            priority={false}
+                            unoptimized={true}
                             onError={(e) => {
                               const target = e.target as HTMLImageElement;
                               target.style.display = "none";
@@ -139,18 +138,23 @@ export default function ProductsTable() {
                       {formatCurrency(product.price)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-gray-600 dark:text-gray-400">
-                      {product.category}
+                      {product.categoryId}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-gray-600 dark:text-gray-400">
-                      {product.createdAt}
+                      {product.createdAt
+                        ? formatDate(product.createdAt)
+                        : "N/A"}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right">
                       <div className="flex items-center justify-end gap-1">
-                        <button className="p-2 text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition-colors">
-                          <span className="material-symbols-outlined">
-                            edit
-                          </span>
-                        </button>
+                        <div className="p-2 text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition-colors">
+                          <Link
+                            className="material-symbols-outlined"
+                            href={`/admin/products/${product.id}/edit`}
+                          >
+                            Edit
+                          </Link>
+                        </div>
                         <button className="p-2 text-gray-500 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-400 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition-colors">
                           <span className="material-symbols-outlined">
                             delete
@@ -161,10 +165,10 @@ export default function ProductsTable() {
                   </tr>
                 ))
               )}
-            </Suspense>
-          </tbody>
-        </table>
-      </div>
+            </tbody>
+          </table>
+        </div>
+      </Suspense>
     </div>
   );
 }

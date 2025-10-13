@@ -22,7 +22,11 @@ export default function AccountForm({ user }: { user: User }) {
   }, [state]);
 
   return (
-    <form className="mx-auto max-w-2xl space-y-6" noValidate action={dispatch}>
+    <form
+      className="mx-auto my-10 max-w-2xl space-y-6"
+      noValidate
+      action={dispatch}
+    >
       <h2 className="text-xl font-semibold">Account Details</h2>
       <label htmlFor="email" className="block text-sm font-medium">
         Email

@@ -1,9 +1,23 @@
 import ProductsHeader from "@/components/admin/products/ProductsHeader";
 import ProductsTable from "@/components/admin/products/ProductsTable";
 import SideBar from "@/components/admin/SideBar";
+import { AllProductsSchema } from "@/src/schemas";
 import React from "react";
 
-export default function AdminProductsPage() {
+const fetchProducts = async () => {
+  const url = `${process.env.API_URL}/products`;
+  const req = await fetch(url, { method: "GET" });
+  const json = await req.json();
+  if (!req.ok) {
+    return [];
+  }
+  const product = AllProductsSchema.parse(json);
+  return product;
+};
+
+export default async function AdminProductsPage() {
+  const product = await fetchProducts();
+
   return (
     <>
       <div className="flex min-h-screen bg-background-light dark:bg-background-dark">
@@ -13,7 +27,7 @@ export default function AdminProductsPage() {
           <ProductsHeader />
           <div className="max-w-7xl mx-auto">
             {/* products Table */}
-            <ProductsTable />
+            <ProductsTable products={product} />
           </div>
         </main>
       </div>

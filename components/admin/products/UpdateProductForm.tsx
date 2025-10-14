@@ -170,6 +170,7 @@ export default function UpdateProductForm({
           <button
             type="button"
             className="flex-1 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            onClick={() => router.push("/admin/products")}
           >
             Cancel
           </button>

@@ -7,12 +7,15 @@ import ProductsSearchBar from "./ProductsSearchBar";
 import Link from "next/link";
 import { ProductsArrayType } from "@/src/schemas";
 import Image from "next/image";
+import ConfirmPassword from "@/components/ui/ConfirmPassword";
+import { useRouter } from "next/navigation";
 
 export default function ProductsTable({
   products,
 }: {
   products: ProductsArrayType;
 }) {
+  const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
   const [productsFilter] = useState(products);
 
@@ -155,9 +158,14 @@ export default function ProductsTable({
                             Edit
                           </Link>
                         </div>
-                        <button className="p-2 text-gray-500 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-400 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition-colors">
+                        <button
+                          className="p-2 text-gray-500 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-400 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
+                          onClick={() =>
+                            router.push(`?deleteProductId=${product.id}`)
+                          }
+                        >
                           <span className="material-symbols-outlined">
-                            delete
+                            <ConfirmPassword />
                           </span>
                         </button>
                       </div>

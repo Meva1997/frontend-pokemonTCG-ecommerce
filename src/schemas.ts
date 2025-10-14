@@ -94,6 +94,70 @@ export const CategoriesSchema = z
 
 export type Category = z.infer<typeof CategoriesSchema>;
 
+export const PasswordSchema = z.object({
+  password: z.string().min(1, "Password is required"),
+});
+
+export const updateUserSchema = z
+  .object({
+    userName: z.string().min(1, "Name is required").max(50, "Name is too long"),
+    email: z.email("Invalid email address").min(1, "Email is required"),
+    currentPassword: z.string().optional(),
+    newPassword: z.string().optional(),
+    confirmNewPassword: z.string().optional(),
+    isAdmin: z.boolean(),
+  })
+  .refine(
+    (data) => {
+      // ✅ Si se proporciona newPassword, currentPassword es requerido
+      if (data.newPassword && data.newPassword.length > 0) {
+        return data.currentPassword && data.currentPassword.length > 0;
+      }
+      return true;
+    },
+    {
+      message: "Current password is required when setting a new password",
+      path: ["currentPassword"],
+    }
+  )
+  .refine(
+    (data) => {
+      // ✅ Si se proporciona newPassword, debe tener al menos 8 caracteres
+      if (data.newPassword && data.newPassword.length > 0) {
+        return data.newPassword.length >= 8;
+      }
+      return true;
+    },
+    {
+      message: "New password must be at least 8 characters long",
+      path: ["newPassword"],
+    }
+  )
+  .refine(
+    (data) => {
+      // ✅ Si se proporciona newPassword, confirmNewPassword debe coincidir
+      if (data.newPassword && data.newPassword.length > 0) {
+        return data.newPassword === data.confirmNewPassword;
+      }
+      return true;
+    },
+    {
+      message: "New passwords do not match",
+      path: ["confirmNewPassword"],
+    }
+  );
+
+export type UpdateUserFormData = z.infer<typeof updateUserSchema>;
+
+export const UpdateUserBackendSchema = z.object({
+  id: z.number(),
+  userName: z.string(),
+  email: z.email(),
+  isAdmin: z.boolean(),
+});
+
+export type UpdateUserBackendData = z.infer<typeof UpdateUserBackendSchema>;
+
 //! Success Schema
 export const SuccessSchema = z.string();
 

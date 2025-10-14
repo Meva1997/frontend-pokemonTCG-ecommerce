@@ -3,8 +3,14 @@ import { Button, Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { useActionState, useEffect, useState } from "react";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
 import { toast } from "react-toastify";
+import { Category } from "@/src/schemas";
+import { addProductAction } from "@/actions/admin-createProduct-action";
 
-export default function AddProductButton() {
+export default function AddProductButton({
+  categories,
+}: {
+  categories: Category;
+}) {
   const [isOpen, setIsOpen] = useState(false);
 
   function open() {
@@ -14,6 +20,21 @@ export default function AddProductButton() {
   function close() {
     setIsOpen(false);
   }
+
+  const [state, dispatch, isPending] = useActionState(addProductAction, {
+    errors: [],
+    success: "",
+  });
+
+  useEffect(() => {
+    if (state.errors.length) {
+      state.errors.forEach((error) => toast.error(error));
+    }
+    if (state.success) {
+      toast.success(state.success);
+    }
+  }, [state]);
+
   return (
     <>
       <Button
@@ -58,7 +79,7 @@ export default function AddProductButton() {
                 Add New Product
               </DialogTitle>
 
-              <form className="space-y-4">
+              <form className="space-y-4" noValidate action={dispatch}>
                 {/* Product Name Field */}
                 <div>
                   <label
@@ -160,35 +181,35 @@ export default function AddProductButton() {
                     name="categoryId"
                     className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
                   >
-                    <option value="">Select a category</option>
-                    <option value="1">Single Card</option>
-                    <option value="2">Box Set</option>
-                    <option value="3">Booster Box</option>
-                    <option value="4">Accessories</option>
+                    {categories.map((category) => (
+                      <option key={category.id} value={category.id}>
+                        {category.name}
+                      </option>
+                    ))}
                   </select>
                 </div>
 
                 {/* Form Actions */}
                 <div className="flex gap-3 pt-4">
-                  {/* {isPending ? (
-                      <LoadingSpinner />
-                    ) : ( */}
-                  <>
-                    <Button
-                      type="button"
-                      onClick={close}
-                      className="flex-1 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      Cancel
-                    </Button>
-                    <Button
-                      type="submit"
-                      className="flex-1 px-4 py-2 text-sm font-medium text-white bg-purple-500 hover:bg-purple-700 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center cursor-pointer"
-                    >
-                      Add Product
-                    </Button>
-                  </>
-                  {/* )} */}
+                  {isPending ? (
+                    <LoadingSpinner />
+                  ) : (
+                    <>
+                      <Button
+                        type="button"
+                        onClick={close}
+                        className="flex-1 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        Cancel
+                      </Button>
+                      <Button
+                        type="submit"
+                        className="flex-1 px-4 py-2 text-sm font-medium text-white bg-purple-500 hover:bg-purple-700 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center cursor-pointer"
+                      >
+                        Add Product
+                      </Button>
+                    </>
+                  )}
                 </div>
               </form>
             </DialogPanel>

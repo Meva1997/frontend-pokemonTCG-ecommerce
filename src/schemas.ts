@@ -42,6 +42,9 @@ export type UsersTable = z.infer<typeof UsersTableSchema>;
 export const UpdateAccountSchema = z.object({
   userName: z.string().min(3, "Username must be at least 3 characters"),
   email: z.email("Invalid email address").optional(),
+  currentPassword: z.string().optional(),
+  newPassword: z.string().optional(),
+  confirmNewPassword: z.string().optional(),
 });
 
 export const CreateUserSchema = z.object({
@@ -98,54 +101,14 @@ export const PasswordSchema = z.object({
   password: z.string().min(1, "Password is required"),
 });
 
-export const updateUserSchema = z
-  .object({
-    userName: z.string().min(1, "Name is required").max(50, "Name is too long"),
-    email: z.email("Invalid email address").min(1, "Email is required"),
-    currentPassword: z.string().optional(),
-    newPassword: z.string().optional(),
-    confirmNewPassword: z.string().optional(),
-    isAdmin: z.boolean(),
-  })
-  .refine(
-    (data) => {
-      // ✅ Si se proporciona newPassword, currentPassword es requerido
-      if (data.newPassword && data.newPassword.length > 0) {
-        return data.currentPassword && data.currentPassword.length > 0;
-      }
-      return true;
-    },
-    {
-      message: "Current password is required when setting a new password",
-      path: ["currentPassword"],
-    }
-  )
-  .refine(
-    (data) => {
-      // ✅ Si se proporciona newPassword, debe tener al menos 8 caracteres
-      if (data.newPassword && data.newPassword.length > 0) {
-        return data.newPassword.length >= 8;
-      }
-      return true;
-    },
-    {
-      message: "New password must be at least 8 characters long",
-      path: ["newPassword"],
-    }
-  )
-  .refine(
-    (data) => {
-      // ✅ Si se proporciona newPassword, confirmNewPassword debe coincidir
-      if (data.newPassword && data.newPassword.length > 0) {
-        return data.newPassword === data.confirmNewPassword;
-      }
-      return true;
-    },
-    {
-      message: "New passwords do not match",
-      path: ["confirmNewPassword"],
-    }
-  );
+export const updateUserSchema = z.object({
+  userName: z.string().min(1, "Name is required").max(50, "Name is too long"),
+  email: z.email("Invalid email address").min(1, "Email is required"),
+  currentPassword: z.string().optional(),
+  newPassword: z.string().optional(),
+  confirmNewPassword: z.string().optional(),
+  isAdmin: z.boolean(),
+});
 
 export type UpdateUserFormData = z.infer<typeof updateUserSchema>;
 

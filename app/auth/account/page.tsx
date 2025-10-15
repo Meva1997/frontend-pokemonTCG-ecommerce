@@ -13,13 +13,9 @@ export default async function AccountPage() {
   return (
     <>
       {user ? (
-        <>
-          <div className="my-10 space-y-4">
-            <h1 className="text-2xl font-bold text-center">User Account</h1>
-          </div>
-
+        <main className="my-10">
           <AccountForm user={user} />
-        </>
+        </main>
       ) : (
         // If no user is found, prompt to log in. A fallback; in practice, users should be redirected to login.
         <div className="my-10 space-y-4">

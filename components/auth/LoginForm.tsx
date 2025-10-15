@@ -60,7 +60,7 @@ export default function LoginForm() {
 
       const timoutId = setTimeout(() => {
         router.push("/home");
-      }, 2500);
+      }, 2000);
 
       return () => clearTimeout(timoutId);
     }

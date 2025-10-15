@@ -1,20 +1,22 @@
 "use client";
-import { useActionState, useEffect, useState } from "react";
+
+import { adminDeleteUserAction } from "@/actions/admin-deleteUser-action";
 import { Button, Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { deleteProductAction } from "@/actions/admin-deleteProduct-action";
+import { usePathname, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { useActionState, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-export default function ConfirmPassword() {
+export default function ConfirmDeleteUser() {
   const [isOpen, setIsOpen] = useState(true);
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const deleteProductId = +searchParams.get("deleteProductId")!;
-  const show = deleteProductId ? true : false;
+  const deleteUserId = +searchParams.get("deleteUserId")!;
+  const show = deleteUserId ? true : false;
 
   const hideModal = new URLSearchParams(searchParams.toString());
-  hideModal.delete("deleteProductId");
+  hideModal.delete("deleteUserId");
 
   function open() {
     setIsOpen(true);
@@ -25,21 +27,23 @@ export default function ConfirmPassword() {
     router.replace(`${pathname}?${hideModal}`); // Close the modal by removing the query parameter which is being used to show it
   }
 
-  const deleteProductWithId = deleteProductAction.bind(null, deleteProductId);
-  const [state, dispatch] = useActionState(deleteProductWithId, {
+  const deleteUserActionWithId = adminDeleteUserAction.bind(null, deleteUserId);
+  const [state, dispatch] = useActionState(deleteUserActionWithId, {
     errors: [],
     success: "",
   });
 
   useEffect(() => {
     if (state.errors.length) {
-      state.errors.forEach((error) => toast.error(error));
+      state.errors.forEach((error) => {
+        toast.error(error);
+      });
     }
     if (state.success) {
       toast.success(state.success);
-      router.push("/admin/products"); // Redirect to products page after successful deletion
+      router.replace(pathname); // Refresh the page to reflect the changes
     }
-  }, [state, router]);
+  }, [state, router, pathname]);
 
   return (
     <>
@@ -80,8 +84,8 @@ export default function ConfirmPassword() {
                 Confirm Deletion
               </DialogTitle>
               <p className="mt-2 text-sm/6 text-white/50">
-                Are you sure you want to delete this product? This action cannot
-                be undone.
+                Are you sure you want to delete this user? This action cannot be
+                undone.
               </p>
               <form action={dispatch} noValidate>
                 <div className="my-6">

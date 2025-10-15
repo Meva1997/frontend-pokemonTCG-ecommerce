@@ -10,7 +10,7 @@ export default async function AuthLayout({
       <div className="auth-layout">
         {children}
         <ToastContainer
-          autoClose={5000}
+          autoClose={3000}
           pauseOnFocusLoss={false}
           pauseOnHover={false}
           draggable={false}

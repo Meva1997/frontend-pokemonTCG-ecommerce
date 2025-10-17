@@ -22,8 +22,8 @@ export default function UsersInfo({ users }: { users: UsersTableType }) {
   });
 
   return (
-    <div>
-      <UserSearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+    <div className="space-y-6">
+      <UserSearchBar value={searchTerm} onChange={setSearchTerm} />
       <UsersTable users={searchTerm.trim() !== "" ? filteredUsers : users} />
     </div>
   );

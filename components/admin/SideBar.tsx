@@ -20,7 +20,9 @@ export default function SideBar() {
         <Link
           href="/admin/users"
           className={`flex items-center gap-3 px-3 py-2 text-white rounded-lg ${
-            pathname === "/admin/users" ? isActive() : "bg-primary"
+            pathname === "/admin/users"
+              ? isActive()
+              : "hover:bg-gray-400 dark:hover:bg-gray-700"
           }`}
         >
           <span className="font-semibold">Users</span>
@@ -34,6 +36,16 @@ export default function SideBar() {
           }`}
         >
           <span className="font-semibold">Products</span>
+        </Link>
+        <Link
+          href="/admin/categories"
+          className={`flex items-center gap-3 px-3 py-2 text-white rounded-lg ${
+            pathname === "/admin/categories"
+              ? isActive()
+              : "hover:bg-gray-400 dark:hover:bg-gray-700"
+          }`}
+        >
+          <span className="font-semibold">Categories</span>
         </Link>
       </nav>
     </aside>

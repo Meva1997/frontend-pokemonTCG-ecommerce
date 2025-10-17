@@ -83,19 +83,27 @@ export const UpdateProductSchema = z.object({
   categoryId: z.coerce.number().min(1, "Category is required"),
 });
 
-export const CategoriesSchema = z
-  .object({
-    id: z.number(),
-    name: z.string(),
-    description: z.string().optional(),
-    icon: z.string().optional(),
-    parentId: z.number().nullable(),
-    createdAt: z.string().optional(),
-    updatedAt: z.string().optional(),
-  })
-  .array();
+export const CategorySchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  description: z.string().optional(),
+  icon: z.string().optional(),
+  parentId: z.number().nullable(),
+  createdAt: z.string().optional(),
+  updatedAt: z.string().optional(),
+});
 
-export type Category = z.infer<typeof CategoriesSchema>;
+export const CategoriesSchema = CategorySchema.array();
+
+export const CreateCategorySchema = z.object({
+  name: z.string().min(1, "Name is required").max(100, "Name is too long"),
+  description: z.string().min(1, "Description is required"),
+  icon: z.string().min(1, "Icon is required"),
+});
+
+// Tipos
+export type Category = z.infer<typeof CategorySchema>;
+export type Categories = z.infer<typeof CategoriesSchema>;
 
 export const PasswordSchema = z.object({
   password: z.string().min(1, "Password is required"),

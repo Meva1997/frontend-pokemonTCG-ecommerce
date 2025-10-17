@@ -1,14 +1,14 @@
 "use client";
 import { useActionState, useEffect } from "react";
 import { updateProduct } from "@/actions/admin-updateProduct-action";
-import { Category, Product } from "@/src/schemas";
+import { Categories, Product } from "@/src/schemas";
 import { toast } from "react-toastify";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 type UpdateProductFormProps = {
   product: Product;
-  categories: Category;
+  categories: Categories;
 };
 
 export default function UpdateProductForm({

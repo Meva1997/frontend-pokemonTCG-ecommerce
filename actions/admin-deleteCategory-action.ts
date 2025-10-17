@@ -1,9 +1,9 @@
 "use server";
 
 import {
+  Category,
   ErrorSchema,
   PasswordSchema,
-  Product,
   SuccessSchema,
 } from "@/src/schemas";
 import { revalidatePath } from "next/cache";
@@ -14,8 +14,8 @@ type ActionState = {
   success: string;
 };
 
-export const deleteProductAction = async (
-  id: Product["id"],
+export const deleteCategoryAction = async (
+  id: Category["id"],
   prevState: ActionState,
   formData: FormData
 ) => {
@@ -36,7 +36,7 @@ export const deleteProductAction = async (
   const cookieStore = await cookies();
   const token = cookieStore.get("tokenPokeTCG")?.value;
 
-  const url = `${process.env.API_URL}/products/${id}`;
+  const url = `${process.env.API_URL}/categories/${id}`;
   const req = await fetch(url, {
     method: "DELETE",
     headers: {
@@ -58,7 +58,7 @@ export const deleteProductAction = async (
 
   const success = SuccessSchema.parse(json);
 
-  revalidatePath("/admin/products");
+  revalidatePath("/admin/categories");
 
   return {
     errors: [],

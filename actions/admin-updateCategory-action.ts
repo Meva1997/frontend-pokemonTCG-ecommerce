@@ -1,32 +1,34 @@
 "use server";
 
 import {
+  Category,
+  CreateCategorySchema,
   ErrorSchema,
-  PasswordSchema,
-  Product,
   SuccessSchema,
 } from "@/src/schemas";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
-type ActionState = {
+type ActionStateType = {
   errors: string[];
   success: string;
 };
 
-export const deleteProductAction = async (
-  id: Product["id"],
-  prevState: ActionState,
+export const updateCategoryAction = async (
+  categoryId: Category["id"],
+  prevState: ActionStateType,
   formData: FormData
 ) => {
-  const form = {
-    password: formData.get("password"),
+  const rawForm = {
+    name: formData.get("name"),
+    description: formData.get("description"),
+    icon: formData.get("icon"),
   };
 
-  const validateForm = PasswordSchema.safeParse(form);
+  const form = CreateCategorySchema.safeParse(rawForm);
 
-  if (!validateForm.success) {
-    const errors = validateForm.error.issues.map((err) => err.message);
+  if (!form.success) {
+    const errors = form.error.issues.map((err) => err.message);
     return {
       errors,
       success: "",
@@ -36,14 +38,15 @@ export const deleteProductAction = async (
   const cookieStore = await cookies();
   const token = cookieStore.get("tokenPokeTCG")?.value;
 
-  const url = `${process.env.API_URL}/products/${id}`;
+  const url = `${process.env.API_URL}/categories/${categoryId}`;
+
   const req = await fetch(url, {
-    method: "DELETE",
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(validateForm.data),
+    body: JSON.stringify(form.data),
   });
 
   const json = await req.json();
@@ -58,7 +61,7 @@ export const deleteProductAction = async (
 
   const success = SuccessSchema.parse(json);
 
-  revalidatePath("/admin/products");
+  revalidatePath("/admin/categories");
 
   return {
     errors: [],

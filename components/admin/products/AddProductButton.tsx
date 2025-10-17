@@ -3,13 +3,13 @@ import { Button, Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { useActionState, useEffect, useState } from "react";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
 import { toast } from "react-toastify";
-import { Category } from "@/src/schemas";
+import { Categories } from "@/src/schemas";
 import { addProductAction } from "@/actions/admin-createProduct-action";
 
 export default function AddProductButton({
   categories,
 }: {
-  categories: Category;
+  categories: Categories;
 }) {
   const [isOpen, setIsOpen] = useState(false);
 

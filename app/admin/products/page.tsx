@@ -1,8 +1,9 @@
 import ProductsHeader from "@/components/admin/products/ProductsHeader";
 import ProductsTable from "@/components/admin/products/ProductsTable";
 import SideBar from "@/components/admin/SideBar";
+// import LoadingSpinner from "@/components/ui/LoadingSpinner";
 import { AllProductsSchema } from "@/src/schemas";
-import React from "react";
+// import { Suspense } from "react";
 
 const fetchProducts = async () => {
   const url = `${process.env.API_URL}/products`;
@@ -27,7 +28,9 @@ export default async function AdminProductsPage() {
           <ProductsHeader />
           <div className="max-w-7xl mx-auto">
             {/* products Table */}
+            {/* <Suspense fallback={<LoadingSpinner />}> */}
             <ProductsTable products={product} />
+            {/* </Suspense> */}
           </div>
         </main>
       </div>

@@ -7,6 +7,7 @@ import Link from "next/link";
 import { ProductsArrayType } from "@/src/schemas";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import ConfirmPassword from "@/components/ui/ConfirmPassword";
 
 export default function ProductsTable({
   products,
@@ -204,19 +205,7 @@ export default function ProductsTable({
                         router.push(`?deleteProductId=${product.id}`)
                       }
                     >
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                        />
-                      </svg>
+                      <ConfirmPassword type="product" />
                     </button>
                   </div>
                 </div>
@@ -289,7 +278,14 @@ export default function ProductsTable({
                 ? "Try adjusting your search terms"
                 : "Get started by adding your first product"}
             </p>
-            <button className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors">
+            <button
+              className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors"
+              onClick={() => {
+                if (searchTerm) {
+                  setSearchTerm("");
+                }
+              }}
+            >
               {searchTerm ? "Clear Search" : "Add Product"}
             </button>
           </div>

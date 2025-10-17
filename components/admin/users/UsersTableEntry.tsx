@@ -2,6 +2,7 @@
 import UsersInfo from "./UsersInfo";
 import { authenticatedFetch } from "@/utils/api";
 import { UsersTableSchema } from "@/src/schemas";
+// import { Suspense } from "react";
 
 export default async function UsersTableEntry() {
   const request = await authenticatedFetch(`${process.env.API_URL}/users`);

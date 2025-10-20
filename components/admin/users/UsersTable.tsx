@@ -1,10 +1,8 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { UsersTable as UsersTableType } from "@/src/schemas";
-import ConfirmDeleteUser from "./ConfirmDeleteUser";
-// import UserSearchBar from "./UserSearchBar";
-// import LoadingSpinner from "@/components/ui/LoadingSpinner";
-// import { Suspense } from "react";
+import ConfirmPassword from "@/components/ui/ConfirmPassword";
+// import ConfirmDeleteUser from "./ConfirmDeleteUser";
 
 export default function UsersTable({ users }: { users: UsersTableType }) {
   const router = useRouter();
@@ -174,7 +172,7 @@ export default function UsersTable({ users }: { users: UsersTableType }) {
                       className="p-2 text-gray-500 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-400 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
                       onClick={() => router.push(`?deleteUserId=${user.id}`)}
                     >
-                      <ConfirmDeleteUser />
+                      <ConfirmPassword type="user" />
                     </button>
                   </div>
                 </div>

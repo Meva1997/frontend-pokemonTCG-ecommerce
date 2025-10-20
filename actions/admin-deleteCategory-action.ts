@@ -6,7 +6,6 @@ import {
   PasswordSchema,
   SuccessSchema,
 } from "@/src/schemas";
-import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
 type ActionState = {
@@ -57,8 +56,6 @@ export const deleteCategoryAction = async (
   }
 
   const success = SuccessSchema.parse(json);
-
-  revalidatePath("/admin/categories");
 
   return {
     errors: [],

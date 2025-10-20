@@ -66,6 +66,7 @@ export const ProductsSchema = z.object({
   price: z.coerce.number(),
   categoryId: z.coerce.number(),
   createdAt: z.string().optional(),
+  updatedAt: z.string().optional(),
 });
 
 export type Product = z.infer<typeof ProductsSchema>;

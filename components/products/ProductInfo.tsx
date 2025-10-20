@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { formatCurrency, formatDate } from "@/utils/index";
+import InfoAddToCartButton from "../cart/InfoAddToCartButton";
 
 const fetchProductBySlug = async (slug: string) => {
   const url = `${process.env.API_URL}/products/${slug}`;
@@ -81,14 +82,7 @@ export default async function ProductInfo({ slug }: { slug: string }) {
             </p>
 
             <div className="flex items-center gap-4 mt-4">
-              <button
-                className="flex-1 sm:flex-none flex min-w-[180px] max-w-full sm:max-w-[240px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-[#8013ec] text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-[#6c10c4] transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-                disabled={product.stock === 0}
-              >
-                <span className="truncate">
-                  {product.stock > 0 ? "Add to cart" : "Out of stock"}
-                </span>
-              </button>
+              {product.stock > 0 && <InfoAddToCartButton product={product} />}
               <Link
                 href="/products"
                 className="flex-1 sm:flex-none flex min-w-[180px] max-w-full sm:max-w-[240px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-[#8013ec] text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-[#6c10c4] transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"

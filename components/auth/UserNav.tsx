@@ -1,5 +1,6 @@
 import { verifySession } from "@/src/auth/dal";
 import Link from "next/link";
+import CartNav from "../cart/CartNav";
 
 export default async function UserNav() {
   async function getSessionSafely() {
@@ -42,6 +43,7 @@ export default async function UserNav() {
               Admin
             </Link>
           )}
+          <CartNav />
         </nav>
       )}
     </>

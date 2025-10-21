@@ -7,6 +7,7 @@ import Link from "next/link";
 export default function CartContent() {
   const { items, removeItem, updateQuantity, getTotalPrice, clearCart } =
     useCartStore();
+  console.log("🚀 ~ CartContent ~ items:", items);
 
   if (items.length === 0) {
     return (
@@ -218,9 +219,12 @@ export default function CartContent() {
 
               {/* Action Buttons */}
               <div className="space-y-4">
-                <button className="w-full bg-[#8013ec] hover:bg-[#6c10c4] text-white font-bold py-4 px-6 rounded-lg transition-colors transform hover:scale-105 shadow-lg shadow-[#8013ec]/25">
+                <Link
+                  href="/cart/checkout"
+                  className="w-full bg-[#8013ec] hover:bg-[#6c10c4] text-white font-bold py-4 px-6 rounded-lg transition-colors transform hover:scale-105 shadow-lg shadow-[#8013ec]/25 mx-auto block text-center"
+                >
                   Proceed to Checkout
-                </button>
+                </Link>
 
                 <Link
                   href="/products"

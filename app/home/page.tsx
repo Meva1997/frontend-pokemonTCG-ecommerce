@@ -6,7 +6,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative flex min-h-[60vh] items-center justify-center bg-cover bg-center py-20 text-center bg-gradient-to-br from-gray-900 via-purple-900 to-gray-800">
         <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-purple-900/50 to-black/70"></div>
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 relative">
           <h1 className="text-4xl font-black leading-tight tracking-tighter sm:text-5xl md:text-6xl text-white">
             Colect, Trade, and Battle with the Best Pokemon TCG Cards
           </h1>

@@ -132,6 +132,9 @@ export type UpdateUserBackendData = z.infer<typeof UpdateUserBackendSchema>;
 
 //! Success Schema
 export const SuccessSchema = z.string();
+export const SuccessSchemaObj = z.object({
+  message: z.string(),
+});
 
 export type SuccessResponse = z.infer<typeof SuccessSchema>;
 

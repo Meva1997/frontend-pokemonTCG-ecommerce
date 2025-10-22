@@ -61,6 +61,7 @@ export default function OrderSummary() {
       <button
         className="mt-6 flex w-full items-center justify-center rounded-md h-12 px-6 bg-[#8013ec] text-white text-base font-bold tracking-wide hover:bg-violet-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         disabled={items.length === 0}
+        type="submit"
       >
         <span>Pay {formatCurrency(total)}</span>
       </button>

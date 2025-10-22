@@ -27,6 +27,7 @@ export default function PaymentMethod() {
             <input
               className="flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md text-white focus:outline-0 focus:ring-0 border border-[#302839] bg-[#211c27] focus:border-[#8013ec] h-12 placeholder:text-[#ab9db9] px-4 py-2 text-base font-normal leading-normal"
               placeholder="•••• •••• •••• ••••"
+              name="cardNumber"
             />
           </label>
           <div className="grid grid-cols-2 gap-4">
@@ -37,6 +38,7 @@ export default function PaymentMethod() {
               <input
                 className="flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md text-white focus:outline-0 focus:ring-0 border border-[#302839] bg-[#211c27] focus:border-[#8013ec] h-12 placeholder:text-[#ab9db9] px-4 py-2 text-base font-normal leading-normal"
                 placeholder="MM / YY"
+                name="expirationDate"
               />
             </label>
             <label className="flex flex-col">
@@ -46,6 +48,7 @@ export default function PaymentMethod() {
               <input
                 className="flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md text-white focus:outline-0 focus:ring-0 border border-[#302839] bg-[#211c27] focus:border-[#8013ec] h-12 placeholder:text-[#ab9db9] px-4 py-2 text-base font-normal leading-normal"
                 placeholder="123"
+                name="cvc"
               />
             </label>
           </div>
@@ -56,6 +59,7 @@ export default function PaymentMethod() {
             <input
               className="flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md text-white focus:outline-0 focus:ring-0 border border-[#302839] bg-[#211c27] focus:border-[#8013ec] h-12 placeholder:text-[#ab9db9] px-4 py-2 text-base font-normal leading-normal"
               placeholder="Ash Ketchum"
+              name="nameOnCard"
             />
           </label>
         </div>

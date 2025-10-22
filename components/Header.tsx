@@ -3,8 +3,8 @@ import UserNav from "./auth/UserNav";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-10 border-b border-slate-200/50 bg-background-light/80 backdrop-blur-sm dark:border-slate-800/50 dark:bg-background-dark/80">
-      <div className="container mx-auto flex h-16 items-center justify-between sm:px-6 lg:px-0 ">
+    <header className="sticky top-0 z-10 border-b border-slate-200/50 bg-background-black/60 backdrop-blur-md dark:border-slate-800/50 dark:bg-background-dark/80">
+      <div className="container mx-auto flex h-16 items-center justify-between">
         <div className="flex items-center gap-3">
           <Link href="/home" className="flex items-center gap-2 ">
             <svg
@@ -26,7 +26,7 @@ export default function Header() {
           </Link>
         </div>
 
-        <nav className="hidden items-center gap-8 md:flex ">
+        <nav className="items-center gap-8 flex">
           <Link
             href="/home"
             className="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-primary"
@@ -39,21 +39,11 @@ export default function Header() {
           >
             Products
           </Link>
-          <Link
-            href="/collections"
-            className="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-primary"
-          >
-            Collections
-          </Link>
-          <Link
-            href="/community"
-            className="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-primary"
-          >
-            Community
-          </Link>
         </nav>
 
-        <UserNav />
+        <nav>
+          <UserNav />
+        </nav>
       </div>
     </header>
   );

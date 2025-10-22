@@ -31,9 +31,9 @@ export default async function UserNav() {
           </Link>
         </nav>
       ) : (
-        <nav className="flex space-x-4 text-sm md:-ml-44">
+        <nav className="flex space-x-4 text-sm">
           <span className="self-center text-white">
-            Hello, {session.user.userName}
+            {session.user.userName}
           </span>
           <Link href="/auth/account" className="self-center text-white">
             Account

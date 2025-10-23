@@ -22,7 +22,7 @@ export default async function ProductsHeader() {
       <h2 className="text-4xl font-bold text-gray-900 dark:text-white">
         Products
       </h2>
-      <div className="flex items-center justify-center gap-2 px-4 py-2 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors my-4 bg-purple-500 w-1/6 hover:bg-purple-600 cursor-pointer">
+      <div className="flex items-center justify-end bg-purple-600/50 dark:bg-purple-600/80 p-2 rounded-lg hover:bg-purple-800 transition-all cursor-pointer">
         <AddProductButton categories={categories} />
       </div>
     </div>

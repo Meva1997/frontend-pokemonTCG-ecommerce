@@ -10,13 +10,13 @@ export default function SideBar() {
   };
 
   return (
-    <aside className="w-64 bg-background-light dark:bg-background-dark border-r-4 border-gray-500 dark:border-white/10 flex flex-col">
+    <aside className=" w-40 md:w-52 xl:w-64 bg-background-light dark:bg-background-dark border-r-4 border-gray-500 dark:border-white/10 flex flex-col">
       <div className="p-6">
         <h1 className="text-xl font-bold text-gray-900 dark:text-white">
           PokeTCG Admin
         </h1>
       </div>
-      <nav className="flex-1 px-4 py-2 space-y-1">
+      <nav className="flex-1 px-4 py-2 space-y-4">
         <Link
           href="/admin/users"
           className={`flex items-center gap-3 px-3 py-2 text-white rounded-lg ${
@@ -46,6 +46,16 @@ export default function SideBar() {
           }`}
         >
           <span className="font-semibold">Categories</span>
+        </Link>
+        <Link
+          href="/admin/orders"
+          className={`flex items-center gap-3 px-3 py-2 text-white rounded-lg ${
+            pathname === "/admin/orders"
+              ? isActive()
+              : "hover:bg-gray-400 dark:hover:bg-gray-700"
+          }`}
+        >
+          <span className="font-semibold">Orders</span>
         </Link>
       </nav>
     </aside>

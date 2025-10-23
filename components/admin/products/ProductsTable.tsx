@@ -60,8 +60,8 @@ export default function ProductsTable({
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-        <div className="flex items-center justify-between">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6 ">
+        <div className="flex flex-col space-y-4 text-center lg:flex-row lg:items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
               Products Management
@@ -141,7 +141,7 @@ export default function ProductsTable({
         </div>
 
         {filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4 p-6">
             {filteredProducts.map((product) => (
               <div
                 key={product.id}
@@ -180,7 +180,7 @@ export default function ProductsTable({
                   </div>
 
                   {/* Actions */}
-                  <div className="flex space-x-1">
+                  <div className="flex space-x-1 pl-2 flex-col sm:flex-row sm:pl-0">
                     <Link
                       href={`/admin/products/${product.id}/edit`}
                       className="p-1 text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 rounded transition-colors"

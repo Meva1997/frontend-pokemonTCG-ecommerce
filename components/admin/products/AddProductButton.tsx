@@ -39,7 +39,7 @@ export default function AddProductButton({
     <>
       <Button
         onClick={open}
-        className="flex items-center justify-center gap-2 px-4 py-2 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors outline-none"
+        className="flex items-center justify-center gap-2 p-2 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors outline-none"
       >
         <svg
           className="w-4 h-4"

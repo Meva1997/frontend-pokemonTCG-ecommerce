@@ -1,5 +1,6 @@
 import { AllProductsSchema } from "@/src/schemas";
 import StoreProducts from "@/components/products/StoreProducts";
+import { redirect } from "next/navigation";
 
 const fetchProducts = async () => {
   try {
@@ -8,7 +9,8 @@ const fetchProducts = async () => {
     const json = await req.json();
 
     if (!req.ok) {
-      console.error("Failed to fetch products:", req.status, req.statusText);
+      // console.error("Failed to fetch products:", req.status, req.statusText);
+      redirect("/home");
       return [];
     }
 

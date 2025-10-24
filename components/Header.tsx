@@ -3,9 +3,8 @@ import UserNav from "./auth/UserNav";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-10 border-b border-slate-200/50 bg-background-black/60 backdrop-blur-md dark:border-slate-800/50 dark:bg-background-dark/80">
+    <header className="sticky top-0 z-10 bg-black/70 backdrop-blur-xs">
       <div className="container mx-auto px-4 py-2">
-        {/* Layout responsive: columna hasta xl, fila en pantallas muy grandes */}
         <div className="flex flex-col xl:flex-row xl:h-16 xl:items-center xl:justify-between gap-4 xl:gap-0">
           {/* Logo */}
           <div className="flex items-center justify-center xl:justify-start">

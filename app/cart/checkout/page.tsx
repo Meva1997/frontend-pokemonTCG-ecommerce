@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation";
 export default function CheckoutPage() {
   const router = useRouter();
   const { items, clearCart } = useCartStore();
-  const [state, dispatch] = useActionState(checkoutPaymentAction, {
+  const [state, dispatch, isPending] = useActionState(checkoutPaymentAction, {
     errors: [],
     success: "",
   });
@@ -87,27 +87,21 @@ export default function CheckoutPage() {
               />
 
               <div className="space-y-8">
-                {/* Componente 1: Información de Envío */}
+                {/* Shipping Information */}
                 <ShippingInfo />
 
-                {/* Componente 2: Método de Pago */}
+                {/* Payment Method */}
                 <PaymentMethod />
               </div>
             </div>
 
             {/* Right Column - Summary */}
             <div className="space-y-8">
-              {/* Componente 3: Resumen del Pedido */}
-              <OrderSummary />
+              {/* Order Summary */}
+              <OrderSummary isPending={isPending} />
 
-              {/* Componente 4: Contenido del Carrito */}
+              {/* Cart Items */}
               <CartItems />
-              {/* <button
-                type="submit"
-                className="mt-6 flex w-full items-center justify-center rounded-md h-12 px-6 bg-[#8013ec] text-white text-base font-bold tracking-wide hover:bg-violet-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                Pay now
-              </button> */}
             </div>
           </div>
         </form>

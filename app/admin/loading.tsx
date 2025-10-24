@@ -135,16 +135,6 @@ export default function AdminLoading() {
               </div>
             </div>
           </div>
-
-          {/* Loading Message */}
-          <div className="mt-8 text-center">
-            <div className="inline-flex items-center space-x-3 px-6 py-3 bg-purple-100 dark:bg-purple-900/20 rounded-lg">
-              <div className="animate-spin h-5 w-5 border-2 border-purple-600 border-t-transparent rounded-full"></div>
-              <span className="text-purple-700 dark:text-purple-300 font-medium">
-                Loading admin panel...
-              </span>
-            </div>
-          </div>
         </div>
       </main>
     </div>

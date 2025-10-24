@@ -127,9 +127,7 @@ export default function CategoriesInfo({
                           router.push(`?deleteCategoryId=${category.id}`)
                         }
                       >
-                        {/* <Suspense fallback={<LoadingSpinner />}> */}
                         <ConfirmPassword type="category" />
-                        {/* </Suspense> */}
                       </button>
                     </div>
                   </div>

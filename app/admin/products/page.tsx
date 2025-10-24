@@ -28,9 +28,7 @@ export default async function AdminProductsPage() {
           <ProductsHeader />
           <div className="max-w-7xl mx-auto">
             {/* products Table */}
-            {/* <Suspense fallback={<LoadingSpinner />}> */}
             <ProductsTable products={product} />
-            {/* </Suspense> */}
           </div>
         </main>
       </div>

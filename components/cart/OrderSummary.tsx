@@ -3,8 +3,9 @@
 import { useCartStore } from "@/store/cartStore";
 import { formatCurrency } from "@/utils";
 import { useEffect, useState } from "react";
+import LoadingSpinner from "../ui/LoadingSpinner";
 
-export default function OrderSummary() {
+export default function OrderSummary({ isPending }: { isPending?: boolean }) {
   const [mounted, setMounted] = useState(false);
   const { items, getTotalPrice, getTotalItems } = useCartStore();
 
@@ -15,7 +16,7 @@ export default function OrderSummary() {
   const subTotal = mounted ? getTotalPrice() : 0;
   const totalItems = mounted ? getTotalItems() : 0;
   const shipping = subTotal > 100 ? 0 : 10;
-  const tax = subTotal * 0.07;
+  const tax = subTotal * 0.1;
   const total = subTotal + shipping + tax;
 
   return (
@@ -57,14 +58,17 @@ export default function OrderSummary() {
           </span>
         </div>
       </div>
-
-      <button
-        className="mt-6 flex w-full items-center justify-center rounded-md h-12 px-6 bg-[#8013ec] text-white text-base font-bold tracking-wide hover:bg-violet-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-        disabled={items.length === 0}
-        type="submit"
-      >
-        <span>Pay {formatCurrency(total)}</span>
-      </button>
+      {isPending ? (
+        <LoadingSpinner />
+      ) : (
+        <button
+          className="mt-6 flex w-full items-center justify-center rounded-md h-12 px-6 bg-[#8013ec] text-white text-base font-bold tracking-wide hover:bg-violet-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+          disabled={items.length === 0}
+          type="submit"
+        >
+          <span>Pay {formatCurrency(total)}</span>
+        </button>
+      )}
 
       <p className="text-xs text-[#ab9db9] mt-4 text-center">
         By clicking &quot;Pay&quot;, you agree to our{" "}

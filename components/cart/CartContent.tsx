@@ -1,13 +1,13 @@
 "use client";
 
 import { useCartStore } from "@/store/cartStore";
+import { formatCurrency } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function CartContent() {
   const { items, removeItem, updateQuantity, getTotalPrice, clearCart } =
     useCartStore();
-  console.log("🚀 ~ CartContent ~ items:", items);
 
   if (items.length === 0) {
     return (
@@ -179,7 +179,7 @@ export default function CartContent() {
                       {item.name} × {item.quantity}
                     </span>
                     <span className="text-white font-medium">
-                      ${(item.price * item.quantity).toFixed(2)}
+                      {formatCurrency(item.price * item.quantity)}
                     </span>
                   </div>
                 ))}
@@ -192,17 +192,21 @@ export default function CartContent() {
                 <div className="flex justify-between">
                   <span className="text-[#ab9db9]">Subtotal</span>
                   <span className="text-white">
-                    ${getTotalPrice().toFixed(2)}
+                    {formatCurrency(getTotalPrice())}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-[#ab9db9]">Shipping</span>
-                  <span className="text-green-400 font-medium">Free</span>
+                  {getTotalPrice() > 100 ? (
+                    <span className="text-green-400 font-medium">Free</span>
+                  ) : (
+                    <span className="text-white">$10.00</span>
+                  )}
                 </div>
                 <div className="flex justify-between">
                   <span className="text-[#ab9db9]">Tax (10%)</span>
                   <span className="text-white">
-                    ${(getTotalPrice() * 0.1).toFixed(2)}
+                    {formatCurrency(getTotalPrice() * 0.1)}
                   </span>
                 </div>
               </div>
@@ -213,7 +217,11 @@ export default function CartContent() {
               <div className="flex justify-between text-xl font-bold mb-8">
                 <span className="text-white">Total</span>
                 <span className="text-[#8013ec] text-2xl">
-                  ${(getTotalPrice() * 1.1).toFixed(2)}
+                  {formatCurrency(
+                    getTotalPrice() +
+                      (getTotalPrice() > 100 ? 0 : 10) +
+                      getTotalPrice() * 0.1
+                  )}
                 </span>
               </div>
 

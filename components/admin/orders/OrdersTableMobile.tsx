@@ -3,34 +3,33 @@
 import React from "react";
 import Image from "next/image";
 import { formatCurrency, formatDate } from "@/utils";
-
-// Tipos para las órdenes basados en tu JSON
-type OrderProduct = {
-  productId: number;
-  quantity: number;
-  price: number;
-  product: {
-    name: string;
-    image: string;
-    price: number;
-  };
-};
-
-type Order = {
-  id: number;
-  userId: number;
-  status: string;
-  shippingAddress: string;
-  total: number;
-  createdAt: string;
-  updatedAt: string;
-  orderProducts: OrderProduct[];
-};
+import { OrdersArray } from "@/src/schemas";
 
 type OrdersTableMobileProps = {
-  orders: Order[];
+  orders: OrdersArray;
   searchTerm: string;
   statusFilter: string;
+};
+
+// Función para obtener el badge de estado
+export const getStatusBadge = (status: string) => {
+  const badges = {
+    pending:
+      "px-2 py-1 text-xs font-medium rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-900/40 dark:text-yellow-300",
+    paid: "px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300",
+    shipped:
+      "px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300",
+    delivered:
+      "px-2 py-1 text-xs font-medium rounded-full bg-purple-100 text-purple-800 dark:bg-purple-900/40 dark:text-purple-300",
+    cancelled:
+      "px-2 py-1 text-xs font-medium rounded-full bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-300",
+  };
+
+  return (
+    <span className={badges[status as keyof typeof badges] || badges.pending}>
+      {status.charAt(0).toUpperCase() + status.slice(1)}
+    </span>
+  );
 };
 
 export default function OrdersTableMobile({
@@ -49,27 +48,6 @@ export default function OrdersTableMobile({
 
     return matchesSearch && matchesStatus;
   });
-
-  // Función para obtener el badge de estado
-  const getStatusBadge = (status: string) => {
-    const badges = {
-      pending:
-        "px-2 py-1 text-xs font-medium rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-900/40 dark:text-yellow-300",
-      paid: "px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300",
-      shipped:
-        "px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300",
-      delivered:
-        "px-2 py-1 text-xs font-medium rounded-full bg-purple-100 text-purple-800 dark:bg-purple-900/40 dark:text-purple-300",
-      cancelled:
-        "px-2 py-1 text-xs font-medium rounded-full bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-300",
-    };
-
-    return (
-      <span className={badges[status as keyof typeof badges] || badges.pending}>
-        {status.charAt(0).toUpperCase() + status.slice(1)}
-      </span>
-    );
-  };
 
   return (
     <div className="lg:hidden space-y-3">

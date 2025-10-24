@@ -30,17 +30,10 @@ export default function StoreProducts({ products }: PageExampleProps) {
     // Verificar si hay stock disponible
     if (availableStock <= 0) {
       if (product.stock === 0) {
-        toast.error(`❌ ${product.name} is out of stock!`, {
-          position: "top-right",
-          autoClose: 2000,
-        });
+        toast.error(`${product.name} is out of stock!`);
       } else {
         toast.warning(
-          `⚠️ Maximum quantity of ${product.name} already in cart!`,
-          {
-            position: "top-right",
-            autoClose: 2000,
-          }
+          `⚠️ Maximum quantity of ${product.name} already in cart!`
         );
       }
       return;
@@ -57,16 +50,9 @@ export default function StoreProducts({ products }: PageExampleProps) {
       });
 
       // ✅ Notificación de éxito
-      toast.success(`✅ ${product.name} added to cart!`, {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
+      toast.success(`${product.name} added to cart!`);
     } catch (error) {
-      console.error("Error adding to cart:", error);
+      // console.error("Error adding to cart:", error);
       toast.error("❌ Failed to add item to cart");
     }
   };

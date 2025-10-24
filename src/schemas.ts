@@ -130,6 +130,70 @@ export const UpdateUserBackendSchema = z.object({
 
 export type UpdateUserBackendData = z.infer<typeof UpdateUserBackendSchema>;
 
+// Schema for products within an order
+export const OrderProductSchema = z.object({
+  productId: z.number(),
+  quantity: z.number(),
+  price: z.number(),
+  product: z.object({
+    name: z.string(),
+    image: z.string().url(),
+    price: z.number(),
+  }),
+});
+
+// Schema for a single order
+export const OrderSchema = z.object({
+  id: z.number(),
+  userId: z.number(),
+  status: z.enum(["pending", "paid", "shipped", "delivered", "cancelled"]),
+  shippingAddress: z.string(),
+  total: z.number(),
+  createdAt: z.string(), // ISO date string
+  updatedAt: z.string(), // ISO date string
+  orderProducts: z.array(OrderProductSchema),
+});
+
+// Schema para información de usuario en la orden
+export const OrderUserSchema = z.object({
+  id: z.number(),
+  userName: z.string(),
+  email: z.email(),
+});
+
+// Schema para información de pago
+export const PaymentSchema = z.object({
+  method: z.string(),
+  status: z.enum(["pending", "approved", "declined", "refunded"]),
+  amount: z.number(),
+  currency: z.string(),
+});
+
+export const OrderStatusUpdateSchema = z.object({
+  status: z.enum(["pending", "paid", "shipped", "delivered", "cancelled"]),
+});
+
+export type OrderStatusUpdate = z.infer<typeof OrderStatusUpdateSchema>;
+
+// Schema extendido para orden con detalles completos
+export const OrderDetailSchema = OrderSchema.extend({
+  user: OrderUserSchema,
+  payment: PaymentSchema,
+});
+
+// Tipos TypeScript derivados
+export type OrderUser = z.infer<typeof OrderUserSchema>;
+export type Payment = z.infer<typeof PaymentSchema>;
+export type OrderDetail = z.infer<typeof OrderDetailSchema>;
+
+// Schema for the array of orders
+export const OrdersArraySchema = z.array(OrderSchema);
+
+// Tipos TypeScript derivados
+export type OrderProduct = z.infer<typeof OrderProductSchema>;
+export type Order = z.infer<typeof OrderSchema>;
+export type OrdersArray = z.infer<typeof OrdersArraySchema>;
+
 //! Success Schema
 export const SuccessSchema = z.string();
 export const SuccessSchemaObj = z.object({

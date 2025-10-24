@@ -1,6 +1,6 @@
 import { ToastContainer } from "react-toastify";
-// import { Suspense } from "react";
-// import LoadingSpinner from "@/components/ui/LoadingSpinner";
+import { Suspense } from "react";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 export default async function AdminLayout({
   children,
@@ -11,9 +11,8 @@ export default async function AdminLayout({
     <>
       <div className="admin-layout min-h-screen bg-background-light dark:bg-background-dark">
         {/* ✅ Envolver children en Suspense para mejor UX */}
-        {/* <Suspense fallback={<LoadingSpinner />}> */}
-        {children}
-        {/* </Suspense> */}
+
+        <Suspense fallback={<LoadingSpinner />}>{children}</Suspense>
 
         <ToastContainer
           autoClose={3000}

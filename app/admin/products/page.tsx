@@ -1,8 +1,10 @@
 import ProductsHeader from "@/components/admin/products/ProductsHeader";
 import ProductsTable from "@/components/admin/products/ProductsTable";
 import SideBar from "@/components/admin/SideBar";
+import { verifySession } from "@/src/auth/dal";
 // import LoadingSpinner from "@/components/ui/LoadingSpinner";
 import { AllProductsSchema } from "@/src/schemas";
+import { redirect } from "next/navigation";
 // import { Suspense } from "react";
 
 const fetchProducts = async () => {
@@ -17,6 +19,12 @@ const fetchProducts = async () => {
 };
 
 export default async function AdminProductsPage() {
+  const { user } = await verifySession();
+
+  if (!user.isAdmin) {
+    redirect("/home");
+  }
+
   const product = await fetchProducts();
 
   return (

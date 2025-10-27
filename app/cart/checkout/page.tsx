@@ -22,7 +22,7 @@ export default function CheckoutPage() {
   useEffect(() => {
     if (state.errors.length) {
       state.errors.forEach((error) => {
-        toast.error(error);
+        toast.error(`Log in to continue. ${error}`);
       });
     }
     if (state.success) {

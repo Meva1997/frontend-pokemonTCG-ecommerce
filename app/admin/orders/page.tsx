@@ -1,16 +1,16 @@
 import OrdersHeader from "@/components/admin/orders/OrdersHeader";
 import { OrdersTable } from "@/components/admin/orders/OrdersTable";
 import SideBar from "@/components/admin/SideBar";
+import { verifySession } from "@/src/auth/dal";
 import { OrdersArraySchema } from "@/src/schemas";
 import { authenticatedFetch } from "@/utils/api";
-// import LoadingSpinner from "@/components/ui/LoadingSpinner";
-// import { Suspense } from "react";
+import { redirect } from "next/navigation";
 
 async function fetchOrders() {
   const url = `${process.env.API_URL}/orders`;
   const req = await authenticatedFetch(url);
   if (!req.ok) {
-    throw new Error("Failed to fetch orders");
+    return [];
   }
   const json = await req.json();
   const orders = OrdersArraySchema.parse(json);
@@ -18,8 +18,12 @@ async function fetchOrders() {
 }
 
 export default async function AdminOrdersPage() {
-  // Aquí más adelante podrás reemplazar con tu función de fetch real
   const orders = await fetchOrders();
+  const { user } = await verifySession();
+
+  if (!user.isAdmin) {
+    redirect("/home");
+  }
 
   return (
     <div className="flex min-h-screen bg-background-light dark:bg-background-dark">

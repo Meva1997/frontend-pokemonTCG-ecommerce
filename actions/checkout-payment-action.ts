@@ -28,7 +28,7 @@ export async function checkoutPaymentAction(
   const paymentInfo = {
     method: "test", // o formData.get("method") si lo tienes en el formulario
     currency: "usd",
-    notes: "Pago desde frontend",
+    notes: "Order placed via checkout form",
     last4: (formData.get("cardNumber") as string)?.slice(-4) || "",
     brand: "visa", // podrías deducir la marca por el número de tarjeta si quieres
   };

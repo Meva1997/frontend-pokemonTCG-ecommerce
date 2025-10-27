@@ -5,8 +5,8 @@ import Image from "next/image";
 import { Product, ProductsArrayType } from "@/src/schemas";
 import { formatCurrency, formatDate } from "@/utils";
 import { useRouter } from "next/navigation";
-import { useCartStore } from "@/store/cartStore"; // ✅ Importar el store
-import { toast } from "react-toastify"; // ✅ Para notificaciones (opcional)
+import { useCartStore } from "@/store/cartStore";
+import { toast } from "react-toastify";
 
 interface PageExampleProps {
   products: ProductsArrayType;
@@ -398,6 +398,7 @@ export default function StoreProducts({ products }: PageExampleProps) {
                         >
                           View Details
                         </p>
+
                         <div className="flex justify-between items-center mb-2">
                           <p
                             className={`text-xl font-bold ${
@@ -408,20 +409,18 @@ export default function StoreProducts({ products }: PageExampleProps) {
                           >
                             {formatCurrency(product.price)}
                           </p>
-
-                          {/* ✅ Botón mejorado con funcionalidad del carrito */}
                           <button
                             onClick={() => handleAddToCart(product)}
                             disabled={isOutOfStock}
                             className={`
-                              px-4 py-2 rounded-md transition-all duration-300 
-                              flex items-center space-x-2 transform
-                              ${
-                                isOutOfStock
-                                  ? "bg-gray-500 cursor-not-allowed opacity-50"
-                                  : "bg-[#8013ec] hover:bg-[#6c10c4] hover:scale-105"
-                              } text-white
-                            `}
+                                px-4 py-2 rounded-md transition-all duration-300 
+                                flex items-center space-x-2 transform
+                                ${
+                                  isOutOfStock
+                                    ? "bg-gray-500 cursor-not-allowed opacity-50"
+                                    : "bg-[#8013ec] hover:bg-[#6c10c4] hover:scale-105"
+                                } text-white
+                                  `}
                             title={
                               isOutOfStock
                                 ? product.stock === 0

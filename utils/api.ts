@@ -1,5 +1,6 @@
 // utils/api.ts
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export async function authenticatedFetch(
   url: string,
@@ -9,7 +10,7 @@ export async function authenticatedFetch(
   const token = cookiesStore.get("tokenPokeTCG")?.value;
 
   if (!token) {
-    throw new Error("No authentication token found");
+    redirect("/auth/login");
   }
 
   const defaultHeaders = {

@@ -16,19 +16,20 @@ export default async function UserNav() {
   return (
     <>
       {!session ? (
-        <nav className="flex space-x-4">
+        <nav className="flex items-center space-x-4">
           <Link
             href="/auth/login"
-            className="rounded-lg bg-purple-600 px-4  text-white hover:bg-purple-700"
+            className="rounded-lg bg-purple-600 px-4 h-6  text-white hover:bg-purple-700"
           >
             Login
           </Link>
           <Link
             href="/auth/register"
-            className="rounded-lg bg-gray-200 px-4  text-gray-800 hover:bg-gray-300"
+            className="rounded-lg bg-gray-200 px-4 h-6 text-gray-800 hover:bg-gray-300"
           >
             Register
           </Link>
+          <CartNav />
         </nav>
       ) : (
         <nav className="flex space-x-4 text-sm">

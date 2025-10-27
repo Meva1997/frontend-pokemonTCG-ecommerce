@@ -1,20 +1,27 @@
 import CategoriesInfo from "@/components/admin/categories/CategoriesInfo";
 import { CategoryForm } from "@/components/admin/categories/CreateCategoryForm";
 import SideBar from "@/components/admin/SideBar";
+import { verifySession } from "@/src/auth/dal";
 import { CategoriesSchema } from "@/src/schemas";
+import { redirect } from "next/navigation";
 
 const fetchCategories = async () => {
   const url = `${process.env.API_URL}/categories`;
   const req = await fetch(url);
   const json = await req.json();
   if (!req.ok) {
-    throw new Error("Failed to fetch categories");
+    return [];
   }
   const categories = CategoriesSchema.parse(json);
   return categories;
 };
 
 export default async function CategoriesPage() {
+  const { user } = await verifySession();
+
+  if (!user.isAdmin) {
+    redirect("/home");
+  }
   const categories = await fetchCategories();
 
   return (

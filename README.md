@@ -1,6 +1,6 @@
 # Pokémon TCG E‑Commerce Frontend
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-blue)](https://frontend-pokemon-tcg-ecommerce-5m98g8tpm.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-blue)](https://frontend-pokemon-tcg-ecommerce.vercel.app/)
 
 A modern, modular e-commerce frontend for Pokémon Trading Card Game products. Built with Next.js, TypeScript, and Tailwind CSS, this project delivers a fast, accessible, and scalable shopping experience for collectors and fans.
 

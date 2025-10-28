@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import "./globals.css";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-// import { ToastContainer } from "react-toastify";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
 
 export const metadata: Metadata = {
@@ -23,17 +23,7 @@ export default async function RootLayout({
           <main className="flex-grow">{children}</main>
           <Footer />
         </div>
-
-        {/* Toast Container */}
-        {/* <ToastContainer
-          position="top-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          pauseOnFocusLoss={false}
-          draggable={false}
-          pauseOnHover={false}
-          theme="dark"
-        /> */}
+        <SpeedInsights />
       </body>
     </html>
   );

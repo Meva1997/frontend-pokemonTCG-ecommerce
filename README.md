@@ -6,8 +6,6 @@ A modern, modular e-commerce frontend for Pokémon Trading Card Game products. B
 
 ## Screenshots
 
-You can showcase your project UI here. Add images to the `public/screenshots/` folder and reference them below:
-
 ### Main Pages
 
 | Home Page                              | Products                                       | Product Detail                                      | Cart & Checkout                        | Thank You                                             |

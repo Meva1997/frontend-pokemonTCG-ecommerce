@@ -4,6 +4,44 @@ A modern, modular e-commerce frontend for Pokémon Trading Card Game products. B
 
 ---
 
+## Screenshots
+
+You can showcase your project UI here. Add images to the `public/screenshots/` folder and reference them below:
+
+### Main Pages
+
+| Home Page                              | Products                                       | Product Detail                                      | Cart & Checkout                        | Thank You                                       |
+| -------------------------------------- | ---------------------------------------------- | --------------------------------------------------- | -------------------------------------- | ----------------------------------------------- |
+| ![Home](./public/screenshots/home.png) | ![Products](./public/screenshots/products.png) | ![Product](./public/screenshots/product-detail.png) | ![Cart](./public/screenshots/cart.png) | ![Thank You](./public/screenshots/thankyou.png) |
+
+### Authentication
+
+| Login                                    | Create Account                                             |
+| ---------------------------------------- | ---------------------------------------------------------- |
+| ![Login](./public/screenshots/login.png) | ![Create Account](./public/screenshots/create-account.png) |
+
+### Account
+
+| User Account                                           | Admin Account                                            |
+| ------------------------------------------------------ | -------------------------------------------------------- |
+| ![User Account](./public/screenshots/account-user.png) | ![Admin Account](./public/screenshots/account-admin.png) |
+
+### Admin Dashboard
+
+| Users                                                | Products                                                   | Orders                                                 | Categories                                                     |
+| ---------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------ | -------------------------------------------------------------- |
+| ![Admin Users](./public/screenshots/admin-users.png) | ![Admin Products](./public/screenshots/admin-products.png) | ![Admin Orders](./public/screenshots/admin-orders.png) | ![Admin Categories](./public/screenshots/admin-categories.png) |
+
+### Design Inspiration
+
+| StitchAI Design                                |
+| ---------------------------------------------- |
+| ![StitchAI](./public/screenshots/stitchai.png) |
+
+Add more screenshots as your project evolves!
+
+---
+
 ## Features
 
 - Browse Pokémon TCG products with responsive grid layouts

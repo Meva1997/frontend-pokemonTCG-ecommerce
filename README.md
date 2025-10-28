@@ -38,8 +38,6 @@ You can showcase your project UI here. Add images to the `public/screenshots/` f
 | ---------------------------------------------- |
 | ![StitchAI](./public/screenshots/stitchAI.png) |
 
-Add more screenshots as your project evolves!
-
 ---
 
 ## Features

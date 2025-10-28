@@ -1,86 +1,127 @@
-# Pokémon TCG E‑Commerce (Frontend)
+# Pokémon TCG E‑Commerce Frontend
 
-Status: In early development (work in progress)
+A modern, modular e-commerce frontend for Pokémon Trading Card Game products. Built with Next.js, TypeScript, and Tailwind CSS, this project delivers a fast, accessible, and scalable shopping experience for collectors and fans.
 
-A simple Next.js + TypeScript + Tailwind CSS frontend for a future Pokémon TCG e‑commerce site. The goal is to provide a fast, accessible and modular UI to browse Pokémon Trading Card Game cards, view details, and (later) manage a shopping cart and checkout flow.
+---
 
-## Overview
-This project is being built step by step, starting with layout, styling system, and a structure that will make it easy to plug in real data from the Pokémon TCG API. The focus right now is on:
-- Clean component structure
-- Reusable UI primitives (buttons, layout containers, card items)
-- A consistent design system powered by Tailwind CSS
+## Features
 
-Once the foundations are stable, data fetching, cart logic, and simple checkout simulation will follow. Real authentication and payments will be added afterward.
+- Browse Pokémon TCG products with responsive grid layouts
+- Product detail pages with images, price, and description
+- Add/remove products to cart, with persistent cart state
+- Checkout flow with order summary and payment simulation
+- User authentication (login, register, protected routes)
+- View order history and account settings for authenticated users
+- Admin dashboard for managing orders and statuses
+- Dark mode support
+- Mobile-first, fully responsive design
 
 ## Tech Stack
-- Next.js
-- TypeScript
-- Tailwind CSS
-- (Planned) Pokémon TCG API integration
-- (Planned) Auth + Stripe payments
+
+- **Next.js 13+** (App Router)
+- **TypeScript**
+- **Tailwind CSS**
+- Zustand (cart state management)
+- Zod (schema validation)
+- Cloudinary (product images)
+- Custom authentication
+- (Planned) Stripe payments
+
+## Project Structure
+
+```
+frontend/
+  app/
+    cart/checkout/         # Checkout and thank-you pages
+    auth/                  # Login, register, account pages
+    admin/orders/          # Admin order management
+    products/              # Product listing and details
+  components/
+    cart/                  # Cart, OrderSummary, etc.
+    auth/                  # AccountForm, OrderHistory, UserNav
+    admin/orders/          # OrdersTable, OrderStatusEditor
+    shared/                # UI primitives, layout, buttons
+  src/
+    schemas.ts             # Zod schemas for validation
+    store/                 # Zustand store for cart
+    utils/                 # Utility functions
+    auth/                  # Auth helpers
+  public/                  # Static assets
+  tailwind.config.js       # Tailwind configuration
+  README.md                # Project documentation
+```
 
 ## Getting Started
+
 ```bash
-# Clone
+# Clone the repository
 git clone https://github.com/Meva1997/frontend-pokemonTCG-ecommerce.git
 cd frontend-pokemonTCG-ecommerce
 
-# Install (choose one)
+# Install dependencies
 pnpm install
 # or
 yarn install
 # or
 npm install
 
-# Run dev server
+# Start the development server
 pnpm dev
 # or yarn dev / npm run dev
 
-# Build
+# Build for production
 pnpm build
 pnpm start
 ```
 
-## Environment (planned)
-Create a `.env.local` later with things like:
+## Environment Variables
+
+Create a `.env.local` file for API keys and secrets:
+
 ```
 POKEMON_TCG_API_KEY=your_key
+NEXT_PUBLIC_API_URL=http://localhost:4000/api
 ```
 
-## Current Focus
-- Basic page structure & routing
-- Card listing layout (static placeholder data for now)
-- Shared UI components (cards, layout, navigation)
-- Styling system + theme tokens
+## Main Pages & Components
 
-## Short Roadmap
-- [ ] Fetch real card data
-- [ ] Product detail page
-- [ ] Cart state (add / remove / persist locally)
-- [ ] Simple checkout mock
-- [ ] Auth (NextAuth or custom)
-- [ ] Stripe integration
-- [ ] Basic tests
-- [ ] Dark mode toggle
+- **Home**: Product grid, featured cards
+- **Product Detail**: Card info, add to cart
+- **Cart**: View, update, and remove items
+- **Checkout**: Order summary, payment simulation
+- **Auth**: Login, register, account management
+- **Order History**: List of past orders for logged-in users
+- **Admin**: Orders dashboard, status editing
+
+## Roadmap
+
+- [x] Responsive product grid and detail pages
+- [x] Cart state with add/remove/persist
+- [x] Checkout flow and order summary
+- [x] User authentication and protected routes
+- [x] Order history and account settings
+- [x] Admin order management
+- [x] Dark mode
+- [x] Real Pokémon TCG API data
+- [ ] Stripe payment integration
+- [ ] Basic unit and integration tests
 
 ## Design Principles
-- Simplicity first: start small, iterate fast
-- Performance: leverage Next.js optimizations (images, caching)
-- Accessibility: semantic HTML and keyboard-friendly components
-- Type safety: strong typing for domain models (cards, prices, cart items)
 
-## Future Ideas
-- Wishlist / favorites
-- Advanced filters (rarity, set, type, price range)
-- Price history display
-- Internationalization (EN/ES)
-- Analytics integration
+- **Simplicity**: Clean, maintainable code and UI
+- **Performance**: Fast load times, optimized images
+- **Accessibility**: Semantic HTML, keyboard navigation
+- **Type Safety**: Strong typing for all domain models
+- **Mobile First**: Fully responsive layouts
 
-## Contributing (later)
-Open an issue or PR once the base structure is stable.
+## Contributing
+
+Contributions are welcome! Please open an issue or pull request for suggestions, bug fixes, or new features.
 
 ## License
-Not defined yet.
+
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
 
 ---
-(Temporary README – will expand as features land.)
+
+This README will be updated as new features are released and the project evolves.

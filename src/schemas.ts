@@ -180,11 +180,13 @@ export const OrderDetailSchema = OrderSchema.extend({
   user: OrderUserSchema,
   payment: PaymentSchema,
 });
+export const OrderDetailArraySchema = z.array(OrderDetailSchema);
 
 // Tipos TypeScript derivados
 export type OrderUser = z.infer<typeof OrderUserSchema>;
 export type Payment = z.infer<typeof PaymentSchema>;
 export type OrderDetail = z.infer<typeof OrderDetailSchema>;
+export type OrderDetailArray = z.infer<typeof OrderDetailArraySchema>;
 
 // Schema for the array of orders
 export const OrdersArraySchema = z.array(OrderSchema);

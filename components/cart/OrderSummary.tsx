@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCartStore } from "@/store/cartStore";
 import { formatCurrency } from "@/utils";
 import LoadingSpinner from "../ui/LoadingSpinner";
@@ -7,6 +7,10 @@ import LoadingSpinner from "../ui/LoadingSpinner";
 export default function OrderSummary({ isPending }: { isPending?: boolean }) {
   const { items, getTotalPrice, getTotalItems } = useCartStore();
   const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const moneyFreeShipping = 100;
 

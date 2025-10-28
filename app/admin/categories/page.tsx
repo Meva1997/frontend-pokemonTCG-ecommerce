@@ -3,7 +3,13 @@ import { CategoryForm } from "@/components/admin/categories/CreateCategoryForm";
 import SideBar from "@/components/admin/SideBar";
 import { verifySession } from "@/src/auth/dal";
 import { CategoriesSchema } from "@/src/schemas";
+import { Metadata } from "next";
 import { redirect } from "next/navigation";
+
+export const metadata: Metadata = {
+  title: "Admin Categories - PokeTCG Store",
+  description: "Manage categories in the admin panel",
+};
 
 const fetchCategories = async () => {
   const url = `${process.env.API_URL}/categories`;

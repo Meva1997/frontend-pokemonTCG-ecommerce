@@ -10,10 +10,7 @@ export default async function AdminLayout({
   return (
     <>
       <div className="admin-layout min-h-screen bg-background-light dark:bg-background-dark">
-        {/* ✅ Envolver children en Suspense para mejor UX */}
-        {/* <Suspense fallback={<LoadingSpinner />}> */}
         {children}
-        {/* </Suspense> */}
 
         <ToastContainer
           autoClose={3000}

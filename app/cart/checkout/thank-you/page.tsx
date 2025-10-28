@@ -179,7 +179,7 @@ export default function ThankYouPage() {
             </Link>
 
             <Link
-              href="/account/orders"
+              href="/auth/account"
               className="inline-flex items-center justify-center px-8 py-4 bg-[#211c27] hover:bg-[#302839] text-white font-medium border border-[#302839] rounded-lg transition-all duration-300"
             >
               <svg

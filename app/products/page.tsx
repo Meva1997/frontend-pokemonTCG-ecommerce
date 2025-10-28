@@ -1,6 +1,12 @@
 import { AllProductsSchema } from "@/src/schemas";
 import StoreProducts from "@/components/products/StoreProducts";
 import { redirect } from "next/navigation";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Products - PokeTCG Store",
+  description: "Browse our collection of Pokemon TCG cards and merchandise",
+};
 
 const fetchProducts = async () => {
   try {
@@ -9,16 +15,13 @@ const fetchProducts = async () => {
     const json = await req.json();
 
     if (!req.ok) {
-      // console.error("Failed to fetch products:", req.status, req.statusText);
       redirect("/home");
-      return [];
     }
 
     // Validar y transformar los datos con el schema
     const products = AllProductsSchema.parse(json);
     return products;
   } catch (error) {
-    // console.error("Error fetching products:", error);
     return [];
   }
 };

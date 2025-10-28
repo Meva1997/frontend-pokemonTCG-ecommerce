@@ -2,10 +2,14 @@ import ProductsHeader from "@/components/admin/products/ProductsHeader";
 import ProductsTable from "@/components/admin/products/ProductsTable";
 import SideBar from "@/components/admin/SideBar";
 import { verifySession } from "@/src/auth/dal";
-// import LoadingSpinner from "@/components/ui/LoadingSpinner";
 import { AllProductsSchema } from "@/src/schemas";
+import { Metadata } from "next";
 import { redirect } from "next/navigation";
-// import { Suspense } from "react";
+
+export const metadata: Metadata = {
+  title: "Admin Products - PokeTCG Store",
+  description: "Manage products in the admin panel",
+};
 
 const fetchProducts = async () => {
   const url = `${process.env.API_URL}/products`;

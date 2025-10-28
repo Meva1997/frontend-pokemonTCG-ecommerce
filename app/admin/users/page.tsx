@@ -3,6 +3,12 @@ import { redirect } from "next/navigation";
 import SideBar from "@/components/admin/SideBar";
 import UsersTableEntry from "@/components/admin/users/UsersTableEntry";
 import AddUserButton from "@/components/admin/users/AddUserButton";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Admin Users - PokeTCG Store",
+  description: "Manage users in the admin panel of PokeTCG Store",
+};
 
 export default async function AdminPage() {
   const { user } = await verifySession();

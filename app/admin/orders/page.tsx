@@ -4,7 +4,13 @@ import SideBar from "@/components/admin/SideBar";
 import { verifySession } from "@/src/auth/dal";
 import { OrdersArraySchema } from "@/src/schemas";
 import { authenticatedFetch } from "@/utils/api";
+import { Metadata } from "next";
 import { redirect } from "next/navigation";
+
+export const metadata: Metadata = {
+  title: "Admin Orders - PokeTCG Store",
+  description: "Manage orders in the admin panel",
+};
 
 async function fetchOrders() {
   const url = `${process.env.API_URL}/orders`;

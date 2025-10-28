@@ -1,4 +1,11 @@
+import { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "PokeTCG Store - Home",
+  description:
+    "Welcome to PokeTCG Store, your one-stop shop for Pokemon TCG cards and merchandise.",
+};
 
 export default function Home() {
   return (

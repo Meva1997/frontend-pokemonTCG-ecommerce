@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -24,6 +25,7 @@ export default async function RootLayout({
           <Footer />
         </div>
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );

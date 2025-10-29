@@ -138,7 +138,7 @@ export default function OrdersTableMobile({
                         alt={item.product.name}
                         width={48}
                         height={48}
-                        className="rounded-lg object-cover flex-shrink-0"
+                        className="rounded-lg object-cover w-12 h-12 flex-shrink-0"
                       />
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium text-gray-900 dark:text-white truncate">

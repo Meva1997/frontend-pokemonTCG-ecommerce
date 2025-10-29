@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useRouter } from "next/navigation";
 import { formatCurrency, formatDate } from "@/utils";
 import OrdersTableMobile, { getStatusBadge } from "./OrdersTableMobile";
@@ -8,6 +8,7 @@ import ConfirmPassword from "@/components/ui/ConfirmPassword";
 import { OrdersArray } from "@/src/schemas";
 import Image from "next/image";
 import OrdersTableHeader from "./OrdersTableHeader";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 export function OrdersTable({ orders }: { orders: OrdersArray }) {
   const router = useRouter();
@@ -186,7 +187,7 @@ export function OrdersTable({ orders }: { orders: OrdersArray }) {
                                       alt={product.product.name}
                                       width={40}
                                       height={40}
-                                      className="mx-auto rounded-md"
+                                      className="mx-auto rounded-md w-10 h-10"
                                     />
                                     <span className="text-xs text-gray-700 dark:text-gray-300 font-medium truncate max-w-32">
                                       {product.product.name}
@@ -355,11 +356,13 @@ export function OrdersTable({ orders }: { orders: OrdersArray }) {
       </section>
 
       {/* Orders Mobile View */}
-      <OrdersTableMobile
-        orders={orders}
-        searchTerm={searchTerm}
-        statusFilter={statusFilter}
-      />
+      <Suspense fallback={<LoadingSpinner />}>
+        <OrdersTableMobile
+          orders={orders}
+          searchTerm={searchTerm}
+          statusFilter={statusFilter}
+        />
+      </Suspense>
     </div>
   );
 }

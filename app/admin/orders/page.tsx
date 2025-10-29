@@ -35,7 +35,7 @@ export default async function AdminOrdersPage() {
     <div className="flex min-h-screen bg-background-light dark:bg-background-dark">
       <SideBar />
       {/* Main Content */}
-      <main className="flex-1 p-4 md:p-6 lg:p-8">
+      <main className="flex-1 p-4 md:p-6 lg:p-8 my-16 md:my-0">
         <OrdersHeader orders={orders} />
         <div className="max-w-7xl mx-auto">
           {/* Orders Table */}

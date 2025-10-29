@@ -46,7 +46,7 @@ export default async function ProductInfo({ slug }: { slug: string }) {
               width={600}
               height={600}
               className="w-full h-full object-cover"
-              priority
+              loading="lazy"
             />
           </div>
 

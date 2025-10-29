@@ -3,7 +3,7 @@ import UserNav from "./auth/UserNav";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-10 bg-black/70 backdrop-blur-xs">
+    <header className="sticky top-0 z-10 bg-black/70 backdrop-blur-xs mb-10">
       <div className="container mx-auto px-4 py-2">
         <div className="flex flex-col xl:flex-row xl:h-16 xl:items-center xl:justify-between gap-4 xl:gap-0">
           {/* Logo */}

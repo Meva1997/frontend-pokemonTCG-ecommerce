@@ -5,7 +5,7 @@ import LogoutForm from "./LogoutForm";
 export default function AccountDetails({ user }: { user: User }) {
   return (
     <>
-      <div className="max-w-md mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+      <div className="w-sm md:max-w-md mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
         {/* Header */}
         <div className="bg-gradient-to-r from-purple-500 to-pink-500 px-6 py-4">
           <h2 className="text-2xl font-bold text-white">Account Details</h2>

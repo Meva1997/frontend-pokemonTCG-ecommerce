@@ -17,8 +17,8 @@ export default function CategoriesInfo({
     <>
       <div className="space-y-6">
         {/* Header */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-          <div className="flex items-center justify-between">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4 w-2/3 mx-auto md:w-full md:mx-0">
+          <div className="flex flex-col space-y-2  items-center justify-between md:flex-row md:space-y-0 text-center md:text-left">
             <div>
               <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
                 Categories Management
@@ -27,14 +27,14 @@ export default function CategoriesInfo({
                 Manage your product categories and their details
               </p>
             </div>
-            <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">
+            <div className="text-xl md:text-3xl font-bold text-purple-600 dark:text-purple-400">
               Total categories: {categories.length}
             </div>
           </div>
         </div>
 
         {/* Categories Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 w-2/3 mx-auto md:w-full md:grid-cols-3 gap-4">
           <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg p-6 text-white">
             <div className="flex items-center justify-between">
               <div>
@@ -69,7 +69,7 @@ export default function CategoriesInfo({
         </div>
 
         {/* Categories Grid */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 w-3/4 mx-auto md:w-full">
           <div className="p-6 border-b border-gray-200 dark:border-gray-700">
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
               All Categories

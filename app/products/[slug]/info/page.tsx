@@ -1,5 +1,6 @@
 import ProductInfo from "@/components/products/ProductInfo";
-import React from "react";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
+import React, { Suspense } from "react";
 
 export default async function UniqueProductPage({
   params,
@@ -16,7 +17,9 @@ export default async function UniqueProductPage({
         </h1>
       </header>
       <main>
-        <ProductInfo slug={slug} />
+        <Suspense fallback={<LoadingSpinner />}>
+          <ProductInfo slug={slug} />
+        </Suspense>
       </main>
     </>
   );

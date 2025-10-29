@@ -147,7 +147,7 @@ export function CategoryForm({
   );
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 ">
       {/* Header */}
       <div className="p-6 border-b border-gray-200 dark:border-gray-700">
         <div className="flex items-center justify-between">
@@ -162,7 +162,7 @@ export function CategoryForm({
       </div>
 
       {/* Form */}
-      <form className="p-6 space-y-6" action={dispatch} noValidate>
+      <form className=" p-6 space-y-6" action={dispatch} noValidate>
         {/* Category Name */}
         <div>
           <label
@@ -222,11 +222,11 @@ export function CategoryForm({
           </div>
 
           {/* Suggested Icons */}
-          <div className="space-y-3">
+          <div className="space-y-2 md:space-y-3">
             <p className="text-sm text-gray-600 dark:text-gray-400">
               Or choose from suggested icons:
             </p>
-            <div className="grid grid-cols-8 gap-2">
+            <div className="grid grid-cols-4 lg:grid-cols-8 gap-2">
               {suggestedIcons.map((icon, index) => (
                 <button
                   key={index}
@@ -283,14 +283,14 @@ export function CategoryForm({
             <button
               type="button"
               onClick={() => router.back()}
-              className="px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+              className=" p-2 md:px-4 md:py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
             >
               Cancel
             </button>
 
             <button
               type="submit"
-              className="flex items-center space-x-2 px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex items-center space-x-2 p-2 md:px-6 md:py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {submitIcon}
               <span>{submitText}</span>

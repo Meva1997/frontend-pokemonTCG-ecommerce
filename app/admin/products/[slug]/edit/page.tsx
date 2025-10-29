@@ -1,8 +1,10 @@
 import UpdateProductForm from "@/components/admin/products/UpdateProductForm";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 import { CategoriesSchema, ProductsSchema } from "@/src/schemas";
 import { authenticatedFetch } from "@/utils/api";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 
 const getProductById = async (slug: string) => {
   const url = `${process.env.API_URL}/products/${slug}`;
@@ -57,7 +59,9 @@ export default async function UpdateProductPage({
           </Link>
         </div>
       </header>
-      <UpdateProductForm product={product} categories={categories} />
+      <Suspense fallback={<LoadingSpinner />}>
+        <UpdateProductForm product={product} categories={categories} />
+      </Suspense>
     </>
   );
 }

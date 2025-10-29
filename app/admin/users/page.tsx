@@ -20,10 +20,11 @@ export default async function AdminPage() {
   return (
     <div className="flex min-h-screen bg-background-light dark:bg-background-dark">
       {/* Sidebar */}
+
       <SideBar />
 
       {/* Main Content */}
-      <main className="flex-1 p-8">
+      <main className="flex-1 p-8 my-16 md:my-0">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="flex items-center justify-between mb-8">

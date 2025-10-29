@@ -64,7 +64,7 @@ export default function OrderHistory({ orders }: { orders: OrderDetailArray }) {
                     alt={item.product.name}
                     width={64}
                     height={64}
-                    className="rounded object-cover"
+                    className="rounded object-cover h-auto w-20"
                   />
                 </div>
                 <div className="flex-1 min-w-0">

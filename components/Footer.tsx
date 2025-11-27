@@ -38,7 +38,7 @@ export default function Footer() {
                 <ul className="mt-4 space-y-4">
                   <li>
                     <Link
-                      href="/products/single-cards"
+                      href="/products"
                       className="text-base text-gray-300 hover:text-primary transition-colors duration-300"
                     >
                       Single Cards
@@ -46,7 +46,7 @@ export default function Footer() {
                   </li>
                   <li>
                     <Link
-                      href="/products/booster-boxes"
+                      href="/products"
                       className="text-base text-gray-300 hover:text-primary transition-colors duration-300"
                     >
                       Booster Boxes
@@ -54,7 +54,7 @@ export default function Footer() {
                   </li>
                   <li>
                     <Link
-                      href="/products/accessories"
+                      href="/products"
                       className="text-base text-gray-300 hover:text-primary transition-colors duration-300"
                     >
                       Accessories
@@ -70,117 +70,36 @@ export default function Footer() {
                 </h3>
                 <ul className="mt-4 space-y-4">
                   <li>
-                    <Link
-                      href="/privacy-policy"
+                    <a
+                      href="https://github.com/Meva1997"
                       className="text-base text-gray-300 hover:text-primary transition-colors duration-300"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      Privacy Policy
-                    </Link>
+                      GitHub
+                    </a>
                   </li>
                   <li>
-                    <Link
-                      href="/terms-of-service"
+                    <a
+                      href="https://www.linkedin.com/in/alex-fullstack-developer/"
                       className="text-base text-gray-300 hover:text-primary transition-colors duration-300"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      Terms of Service
-                    </Link>
+                      Linkedin
+                    </a>
                   </li>
                   <li>
-                    <Link
-                      href="/faq"
+                    <a
+                      href="https://frontend-developer-next.vercel.app/"
                       className="text-base text-gray-300 hover:text-primary transition-colors duration-300"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      FAQ
-                    </Link>
+                      Portfolio
+                    </a>
                   </li>
                 </ul>
-              </div>
-
-              {/* Support Links */}
-              <div>
-                <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
-                  Support
-                </h3>
-                <ul className="mt-4 space-y-4">
-                  <li>
-                    <Link
-                      href="/contact"
-                      className="text-base text-gray-300 hover:text-primary transition-colors duration-300"
-                    >
-                      Contact
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/shipping-returns"
-                      className="text-base text-gray-300 hover:text-primary transition-colors duration-300"
-                    >
-                      Shipping & Returns
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Social Media Links */}
-              <div className="flex flex-col items-start lg:items-end">
-                <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
-                  Follow Us
-                </h3>
-                <div className="flex space-x-4 mt-4">
-                  {/* Twitter */}
-                  <Link
-                    href="https://twitter.com/poketcgstore"
-                    className="text-gray-400 hover:text-primary transition-colors duration-300"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <svg
-                      fill="currentColor"
-                      height="24"
-                      viewBox="0 0 256 256"
-                      width="24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M247.39,68.94A8,8,0,0,0,240,64H209.57A48.66,48.66,0,0,0,168.1,40a46.91,46.91,0,0,0-33.75,13.7A47.9,47.9,0,0,0,120,88v6.09C79.74,83.47,46.81,50.72,46.46,50.37a8,8,0,0,0-13.65,4.92c-4.31,47.79,9.57,79.77,22,98.18a110.93,110.93,0,0,0,21.88,24.2c-15.23,17.53-39.21,26.74-39.47,26.84a8,8,0,0,0-3.85,11.93c.75,1.12,3.75,5.05,11.08,8.72C53.51,229.7,65.48,232,80,232c70.67,0,129.72-54.42,135.75-124.44l29.91-29.9A8,8,0,0,0,247.39,68.94Zm-45,29.41a8,8,0,0,0-2.32,5.14C196,166.58,143.28,216,80,216c-10.56,0-18-1.4-23.22-3.08,11.51-6.25,27.56-17,37.88-32.48A8,8,0,0,0,92,169.08c-.47-.27-43.91-26.34-44-96,16,13,45.25,33.17,78.67,38.79A8,8,0,0,0,136,104V88a32,32,0,0,1,9.6-22.92A30.94,30.94,0,0,1,167.9,56c12.66.16,24.49,7.88,29.44,19.21A8,8,0,0,0,204.67,80h16Z" />
-                    </svg>
-                  </Link>
-
-                  {/* Instagram */}
-                  <Link
-                    href="https://instagram.com/poketcgstore"
-                    className="text-gray-400 hover:text-primary transition-colors duration-300"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <svg
-                      fill="currentColor"
-                      height="24"
-                      viewBox="0 0 256 256"
-                      width="24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z" />
-                    </svg>
-                  </Link>
-
-                  {/* Facebook */}
-                  <Link
-                    href="https://facebook.com/poketcgstore"
-                    className="text-gray-400 hover:text-primary transition-colors duration-300"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <svg
-                      fill="currentColor"
-                      height="24"
-                      viewBox="0 0 256 256"
-                      width="24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm8,191.63V152h24a8,8,0,0,0,0-16H136V112a16,16,0,0,1,16-16h16a8,8,0,0,0,0-16H152a32,32,0,0,0-32,32v24H96a8,8,0,0,0,0,16h24v63.63a88,88,0,1,1,16,0Z" />
-                    </svg>
-                  </Link>
-                </div>
               </div>
             </div>
           </div>
@@ -189,7 +108,8 @@ export default function Footer() {
         {/* Bottom Section */}
         <div className="mt-8 border-t border-gray-700 pt-8 flex flex-col sm:flex-row justify-between items-center">
           <p className="text-base text-gray-400">
-            © 2024 PokeTCG Store. All rights reserved.
+            © {new Date().getFullYear()} PokeTCG Store - Alejandro Medina. All
+            rights reserved.
           </p>
 
           {/* Payment Methods */}
@@ -240,6 +160,30 @@ export default function Footer() {
               </div>
             </div>
           </div>
+        </div>
+        <hr className="my-6" />
+        <div className="flex flex-col mt-6">
+          <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+            Disclaimer
+          </h3>
+          <p className="mt-4 text-sm text-gray-400">
+            <span className="text-purple-800 font-medium text-lg">
+              Please note:
+            </span>{" "}
+            This website is a personal project and is not affiliated with or
+            endorsed by The Pokémon Company or any of its subsidiaries. All
+            Pokémon trademarks and copyrights are the property of their
+            respective owners. This site is intended for educational and
+            entertainment purposes only. Thank you for understanding. Images
+            used in the shop are shown solely to demonstrate the project and for
+            non-commercial, illustrative purposes. This project is strictly a
+            personal portfolio demonstration of my skills and is not intended
+            for commercial use. This notice is for informational purposes and
+            does not constitute legal advice. I do not intend to claim,
+            reproduce, or profit from anyone else&#39;s work; if you believe any
+            content on this site improperly uses your work, please contact me
+            and I will promptly address it.
+          </p>
         </div>
       </div>
     </footer>

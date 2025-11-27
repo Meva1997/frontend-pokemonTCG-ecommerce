@@ -1,7 +1,8 @@
 import Link from "next/link";
-import SocialLogin from "@/components/SocialLogin";
 import LoginForm from "@/components/auth/LoginForm";
 import { Metadata } from "next";
+import { Suspense } from "react";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 export const metadata: Metadata = {
   title: "PokeTCG Store - Login",
@@ -40,10 +41,9 @@ export default function LoginPage() {
           </div>
 
           {/* Login Form */}
-          <LoginForm />
-
-          {/* Social Login Section */}
-          <SocialLogin />
+          <Suspense fallback={<LoadingSpinner />}>
+            <LoginForm />
+          </Suspense>
 
           {/* Register Link */}
           <p className="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">

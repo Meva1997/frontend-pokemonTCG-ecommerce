@@ -1,8 +1,8 @@
-import Link from "next/link";
-import SocialLogin from "@/components/SocialLogin";
 import RegisterForm from "@/components/auth/RegisterForm";
 
 import { Metadata } from "next";
+import { Suspense } from "react";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 export const metadata: Metadata = {
   title: "PokeTCG Store - Register",
@@ -12,32 +12,15 @@ export const metadata: Metadata = {
 
 export default function RegisterPage() {
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex my-20 flex-col">
       {/* Main Content */}
-      <main className="flex-grow">
-        <div className="container mx-auto flex flex-1 items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+      <main className="flex-grow mb-20">
+        <div className="container mx-auto flex flex-1 items-center justify-center px-4 sm:px-6 lg:px-8">
           <div className="w-full max-w-md space-y-8">
-            {/* Header */}
-            <div className="text-center">
-              <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-                Create an account
-              </h2>
-              <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
-                Already have an account?{" "}
-                <Link
-                  href="/auth/login"
-                  className="font-medium text-primary hover:text-primary/80"
-                >
-                  Sign in
-                </Link>
-              </p>
-            </div>
-
             {/* Registration Form */}
-            <RegisterForm />
-
-            {/* Social Login Section */}
-            <SocialLogin />
+            <Suspense fallback={<LoadingSpinner />}>
+              <RegisterForm />
+            </Suspense>
           </div>
         </div>
       </main>

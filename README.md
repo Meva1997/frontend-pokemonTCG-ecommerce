@@ -4,6 +4,9 @@
 
 A modern, modular e-commerce frontend for Pokémon Trading Card Game products. Built with Next.js, TypeScript, and Tailwind CSS, this project delivers a fast, accessible, and scalable shopping experience for collectors and fans.
 
+Test email: test@email.com  
+Test password: password
+
 ---
 
 ## Screenshots

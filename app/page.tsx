@@ -15,6 +15,27 @@ export default function Welcome() {
         </p>
         <div className="mb-6">
           <h2 className="text-xl font-semibold text-purple-600 mb-2">
+            Log In Credentials
+          </h2>
+          <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-1">
+            <li>Admin User:</li>
+            <ul className="list-disc list-inside ml-6 text-gray-700 dark:text-gray-300 space-y-1">
+              <li>Email: test@email.com </li>
+              <li>Password: password</li>
+              <li>
+                <span className="text-red-600 font-bold text-xl">Note:</span>{" "}
+                Use these credentials to log in as an admin user.{" "}
+                <span className="font-bold text-red-600">
+                  Please do not make any changes
+                </span>{" "}
+                to the admin account credentials. It is for demonstration
+                purposes only.
+              </li>
+            </ul>
+          </ul>
+        </div>
+        <div className="mb-6">
+          <h2 className="text-xl font-semibold text-purple-600 mb-2">
             Key Features
           </h2>
           <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-1">
@@ -67,10 +88,10 @@ export default function Welcome() {
             <p className="mb-1">
               Email:{" "}
               <a
-                href="mailto:alexmedval2@gmail.com"
+                href="mailto:mevadev97@gmail.com"
                 className="text-blue-600 underline"
               >
-                alexmedval2@gmail.com
+                mevadev97@gmail.com
               </a>
             </p>
             <p className="mb-1">

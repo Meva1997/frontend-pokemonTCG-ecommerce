@@ -196,6 +196,57 @@ export type OrderProduct = z.infer<typeof OrderProductSchema>;
 export type Order = z.infer<typeof OrderSchema>;
 export type OrdersArray = z.infer<typeof OrdersArraySchema>;
 
+// ─────────────────────────────────────────
+//  Stripe / Payments
+// ─────────────────────────────────────────
+
+/** Shape of a cart item as the backend's /payments/create-intent expects */
+export const CartItemPayloadSchema = z.object({
+  productId: z.number().int().positive(),
+  quantity: z.number().int().positive(),
+});
+export type CartItemPayload = z.infer<typeof CartItemPayloadSchema>;
+
+/** Body sent to POST /payments/create-intent */
+export const CreatePaymentIntentRequestSchema = z.object({
+  products: z.array(CartItemPayloadSchema).min(1),
+  currency: z.string().length(3).optional().default("usd"),
+  shipping: z.number().min(0).optional().default(0),
+  tax: z.number().min(0).optional().default(0),
+});
+export type CreatePaymentIntentRequest = z.infer<
+  typeof CreatePaymentIntentRequestSchema
+>;
+
+/** Response from POST /payments/create-intent */
+export const CreatePaymentIntentResponseSchema = z.object({
+  clientSecret: z.string(),
+  paymentIntentId: z.string(),
+  amount: z.number(),
+  currency: z.string(),
+});
+export type CreatePaymentIntentResponse = z.infer<
+  typeof CreatePaymentIntentResponseSchema
+>;
+
+/** Body sent to POST /payments/confirm */
+export const ConfirmPaymentRequestSchema = z.object({
+  paymentIntentId: z.string().min(1),
+  shippingAddress: z.string().min(1),
+});
+export type ConfirmPaymentRequest = z.infer<typeof ConfirmPaymentRequestSchema>;
+
+/** Response from POST /payments/confirm */
+export const ConfirmPaymentResponseSchema = z.object({
+  message: z.string(),
+  orderId: z.number(),
+  paymentId: z.number(),
+  status: z.literal("paid"),
+});
+export type ConfirmPaymentResponse = z.infer<
+  typeof ConfirmPaymentResponseSchema
+>;
+
 //! Success Schema
 export const SuccessSchema = z.string();
 export const SuccessSchemaObj = z.object({

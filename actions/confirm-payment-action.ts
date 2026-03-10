@@ -2,34 +2,29 @@
 
 import { cookies } from "next/headers";
 import {
-  CartItemPayload,
-  CreatePaymentIntentRequestSchema,
-  CreatePaymentIntentResponseSchema,
+  ConfirmPaymentRequestSchema,
+  ConfirmPaymentResponseSchema,
   ErrorSchema,
 } from "@/src/schemas";
 
-type CreatePaymentIntentActionState = {
+type ConfirmPaymentActionState = {
   errors: string[];
   data: {
-    clientSecret: string;
-    paymentIntentId: string;
-    amount: number;
-    currency: string;
+    message: string;
+    orderId: number;
+    paymentId: number;
+    status: "paid";
   } | null;
 };
 
-export async function createPaymentIntentAction(
-  products: CartItemPayload[],
-  shipping: number,
-  tax: number,
-  currency = "usd",
-): Promise<CreatePaymentIntentActionState> {
+export async function confirmPaymentAction(
+  paymentIntentId: string,
+  shippingAddress: string,
+): Promise<ConfirmPaymentActionState> {
   // Validate the payload before hitting the network
-  const parseResult = CreatePaymentIntentRequestSchema.safeParse({
-    products,
-    shipping,
-    tax,
-    currency,
+  const parseResult = ConfirmPaymentRequestSchema.safeParse({
+    paymentIntentId,
+    shippingAddress,
   });
 
   if (!parseResult.success) {
@@ -46,7 +41,7 @@ export async function createPaymentIntentAction(
     return { errors: ["You must be logged in to proceed."], data: null };
   }
 
-  const url = `${process.env.API_URL}/payments/create-intent`;
+  const url = `${process.env.API_URL}/payments/confirm`;
 
   let res: Response;
   try {
@@ -75,7 +70,7 @@ export async function createPaymentIntentAction(
     };
   }
 
-  const parsed = CreatePaymentIntentResponseSchema.safeParse(json);
+  const parsed = ConfirmPaymentResponseSchema.safeParse(json);
   if (!parsed.success) {
     return { errors: ["Invalid response from server"], data: null };
   }

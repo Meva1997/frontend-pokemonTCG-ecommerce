@@ -1,11 +1,17 @@
-# Pokémon TCG E‑Commerce Frontend
+# Pokémon TCG E-Commerce — Frontend
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-blue)](https://frontend-pokemon-tcg-ecommerce.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-000000?logo=vercel&logoColor=white)](https://frontend-pokemon-tcg-ecommerce.vercel.app/)
+![Next.js](https://img.shields.io/badge/Next.js-15-000000?logo=next.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.x-38B2AC?logo=tailwind-css&logoColor=white)
+![Stripe](https://img.shields.io/badge/Stripe-Payments-635BFF?logo=stripe&logoColor=white)
+![Performance](https://img.shields.io/badge/Vercel%20Speed%20Insights-99%2F100-brightgreen)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-A modern, modular e-commerce frontend for Pokémon Trading Card Game products. Built with Next.js, TypeScript, and Tailwind CSS, this project delivers a fast, accessible, and scalable shopping experience for collectors and fans.
+Full-featured e-commerce storefront for Pokémon TCG products. Built with Next.js 15 App Router, TypeScript, Tailwind CSS, and integrated with a real Stripe payment flow. Includes both a customer-facing shopping experience and a full admin dashboard.
 
-Test email: test@email.com  
-Test password: password
+> **Test account** — email: `test@email.com` · password: `password`  
+> **Test card** — `4242 4242 4242 4242` · expiry: `12/29` · CVC: `424`
 
 ---
 
@@ -13,82 +19,115 @@ Test password: password
 
 ### Main Pages
 
-| Home Page                              | Products                                       | Product Detail                                      | Cart & Checkout                        | Thank You                                             |
-| -------------------------------------- | ---------------------------------------------- | --------------------------------------------------- | -------------------------------------- | ----------------------------------------------------- |
-| ![Home](./public/screenshots/home.png) | ![Products](./public/screenshots/products.png) | ![Product](./public/screenshots/product-detail.png) | ![Cart](./public/screenshots/cart.png) | ![Thank You](./public/screenshots/cart:thank-you.png) |
+| Home                                   | Products                                       | Product Detail                                     | Cart                                   | Thank You                                             |
+| -------------------------------------- | ---------------------------------------------- | -------------------------------------------------- | -------------------------------------- | ----------------------------------------------------- |
+| ![Home](./public/screenshots/home.png) | ![Products](./public/screenshots/products.png) | ![Detail](./public/screenshots/product-detail.png) | ![Cart](./public/screenshots/cart.png) | ![Thank You](./public/screenshots/cart:thank-you.png) |
 
 ### Authentication
 
-| Login                                    | Create Account                                             |
-| ---------------------------------------- | ---------------------------------------------------------- |
-| ![Login](./public/screenshots/login.png) | ![Create Account](./public/screenshots/create-account.png) |
+| Login                                    | Create Account                                       |
+| ---------------------------------------- | ---------------------------------------------------- |
+| ![Login](./public/screenshots/login.png) | ![Register](./public/screenshots/create-account.png) |
 
-### Account
+### Account & Admin
 
-| User Account                                           | Admin Account                                            |
-| ------------------------------------------------------ | -------------------------------------------------------- |
-| ![User Account](./public/screenshots/account:user.png) | ![Admin Account](./public/screenshots/account:admin.png) |
-
-### Admin Dashboard
-
-| Users                                                | Products                                                   | Orders                                                 | Categories                                                     |
-| ---------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------ | -------------------------------------------------------------- |
-| ![Admin Users](./public/screenshots/admin:users.png) | ![Admin Products](./public/screenshots/admin:products.png) | ![Admin Orders](./public/screenshots/admin:orders.png) | ![Admin Categories](./public/screenshots/admin:categories.png) |
-
-### Design Inspiration
-
-| StitchAI Design                                |
-| ---------------------------------------------- |
-| ![StitchAI](./public/screenshots/stitchAI.png) |
+| User Account                                      | Admin Dashboard                                  | Admin Orders                                     | Admin Products                                       |
+| ------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------ | ---------------------------------------------------- |
+| ![Account](./public/screenshots/account:user.png) | ![Admin](./public/screenshots/account:admin.png) | ![Orders](./public/screenshots/admin:orders.png) | ![Products](./public/screenshots/admin:products.png) |
 
 ---
 
-## Features
+## Key Features
 
-- Browse Pokémon TCG products with responsive grid layouts
-- Product detail pages with images, price, and description
-- Add/remove products to cart, with persistent cart state
-- Checkout flow with order summary and payment simulation
-- User authentication (login, register, protected routes)
-- View order history and account settings for authenticated users
-- Admin dashboard for managing orders and statuses
-- Dark mode support
-- Mobile-first, fully responsive design
+### Shopping Experience
+
+- Responsive product grid with search and category filtering
+- Product detail pages with full info and add-to-cart
+- Persistent cart state across sessions (Zustand + localStorage)
+- Real-time stock validation — prevents adding more than available stock
+
+### Stripe Checkout (2-step flow)
+
+- **Step 1 — Shipping**: collect and validate address, compute subtotal + shipping + tax
+- **Step 2 — Payment**: Stripe `<PaymentElement>` renders inside a secure iframe; `stripe.confirmPayment()` runs client-side; backend confirmation call verifies amount integrity and decrements stock in a DB transaction
+- Order confirmed → cart cleared → redirect to thank-you page
+
+### Authentication & Authorization
+
+- Cookie-based JWT authentication with server-side validation via Next.js server actions
+- Protected routes — unauthenticated users redirected to login
+- Role-based UI — admin dashboard only visible to admin accounts
+
+### Admin Dashboard
+
+- Full CRUD for products, categories, users, and orders
+- Order status management (pending → paid → shipped → delivered)
+- Inline forms validated with Zod schemas
+
+### Performance & Quality
+
+- **99/100** Vercel Speed Insights score
+- Turbopack-powered builds for fast HMR
+- Image optimization via Next.js `<Image>` + Cloudinary CDN
+- Full TypeScript — all API responses validated with Zod schemas at runtime
+
+![Vercel Speed Insights](./public/screenshots/vercel-speedInsights.png)
+
+---
 
 ## Tech Stack
 
-- **Next.js 13+** (App Router)
-- **TypeScript**
-- **Tailwind CSS**
-- Zustand (cart state management)
-- Zod (schema validation)
-- Cloudinary (product images)
-- Custom authentication
-- (Planned) Stripe payments
+| Category          | Technology                               |
+| ----------------- | ---------------------------------------- |
+| Framework         | Next.js 15 (App Router, Server Actions)  |
+| Language          | TypeScript 5                             |
+| Styling           | Tailwind CSS 4                           |
+| Payments          | Stripe.js + @stripe/react-stripe-js      |
+| State management  | Zustand 5 (persisted cart)               |
+| Schema validation | Zod 4                                    |
+| HTTP              | Native `fetch` with typed server actions |
+| Images            | Cloudinary CDN via Next.js Image         |
+| Dev tooling       | Turbopack, pnpm, ESLint                  |
+
+---
 
 ## Project Structure
 
 ```
 frontend/
-  app/
-    cart/checkout/         # Checkout and thank-you pages
-    auth/                  # Login, register, account pages
-    admin/orders/          # Admin order management
-    products/              # Product listing and details
-  components/
-    cart/                  # Cart, OrderSummary, etc.
-    auth/                  # AccountForm, OrderHistory, UserNav
-    admin/orders/          # OrdersTable, OrderStatusEditor
-    shared/                # UI primitives, layout, buttons
-  src/
-    schemas.ts             # Zod schemas for validation
-    store/                 # Zustand store for cart
-    utils/                 # Utility functions
-    auth/                  # Auth helpers
-  public/                  # Static assets
-  tailwind.config.js       # Tailwind configuration
-  README.md                # Project documentation
+├── app/
+│   ├── page.tsx                  # Landing / root redirect
+│   ├── home/                     # Home page
+│   ├── products/                 # Product listing + [slug] detail
+│   ├── cart/
+│   │   ├── page.tsx              # Cart review
+│   │   └── checkout/
+│   │       ├── page.tsx          # 2-step checkout (shipping → Stripe)
+│   │       └── thank-you/       # Post-payment confirmation
+│   ├── auth/                     # Login, register, account
+│   └── admin/                    # Admin dashboard (users/products/orders/categories)
+├── actions/                      # Next.js Server Actions (typed, Zod-validated)
+│   ├── checkout-payment-action.ts   # POST /payments/create-intent
+│   ├── confirm-payment-action.ts    # POST /payments/confirm
+│   └── ...                          # CRUD actions for admin
+├── components/
+│   ├── cart/
+│   │   ├── StripeCheckoutForm.tsx   # Stripe Elements wrapper + PaymentElement
+│   │   ├── OrderSummary.tsx
+│   │   └── ...
+│   ├── auth/
+│   ├── admin/
+│   └── ui/
+├── store/
+│   └── cartStore.ts              # Zustand store with persist middleware
+├── src/
+│   └── schemas.ts                # All Zod schemas + inferred TypeScript types
+└── utils/
+    ├── api.ts                    # authenticatedFetch helper
+    └── index.ts                  # formatCurrency, etc.
 ```
+
+---
 
 ## Getting Started
 
@@ -99,76 +138,41 @@ cd frontend-pokemonTCG-ecommerce
 
 # Install dependencies
 pnpm install
-# or
-yarn install
-# or
-npm install
+
+# Configure environment variables
+# Create a .env file with:
+# API_URL=http://localhost:4000/api
+# NEXT_PUBLIC_API_URL=http://localhost:4000/api
+# NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
 
 # Start the development server
 pnpm dev
-# or yarn dev / npm run dev
 
 # Build for production
-pnpm build
-pnpm start
+pnpm build && pnpm start
 ```
+
+---
 
 ## Environment Variables
 
-Create a `.env.local` file for API keys and secrets:
-
+```env
+API_URL=http://localhost:4000/api                     # Used by server actions
+NEXT_PUBLIC_API_URL=http://localhost:4000/api         # Used by client components
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...        # Stripe publishable key
 ```
-POKEMON_TCG_API_KEY=your_key
-NEXT_PUBLIC_API_URL=http://localhost:4000/api
-```
-
-## Main Pages & Components
-
-- **Home**: Product grid, featured cards
-- **Product Detail**: Card info, add to cart
-- **Cart**: View, update, and remove items
-- **Checkout**: Order summary, payment simulation
-- **Auth**: Login, register, account management
-- **Order History**: List of past orders for logged-in users
-- **Admin**: Orders dashboard, status editing
-
-## Roadmap
-
-- [x] Responsive product grid and detail pages
-- [x] Cart state with add/remove/persist
-- [x] Checkout flow and order summary
-- [x] User authentication and protected routes
-- [x] Order history and account settings
-- [x] Admin order management
-- [x] Dark mode
-- [x] Real Pokémon TCG API data
-- [ ] Stripe payment integration
-- [ ] Basic unit and integration tests
-
-## Design Principles
-
-- **Simplicity**: Clean, maintainable code and UI
-- **Performance**: Fast load times, optimized images
-- **Accessibility**: Semantic HTML, keyboard navigation
-- **Type Safety**: Strong typing for all domain models
-- **Mobile First**: Fully responsive layouts
-
-## Performance
-
-This project was tested with Vercel Speed Insights and achieved a score of **99** for performance and best practices.
-
-![Vercel Speed Insights](./public/screenshots/vercel-speedInsights.png)
 
 ---
 
-## Contributing
+## Architecture Decisions
 
-Contributions are welcome! Please open an issue or pull request for suggestions, bug fixes, or new features.
+- **Server Actions over API Routes** — mutations go through typed server actions, keeping secrets server-side and avoiding an extra round-trip
+- **Zod at the boundary** — every API response is parsed through a Zod schema before being used in the UI, catching backend contract changes at runtime
+- **Stripe client-side confirmation** — `stripe.confirmPayment()` runs in the browser (no card data ever touches our server); the backend only receives the `paymentIntentId` to verify and fulfill
+- **Optimistic UX** — cart updates are instant (Zustand), server sync happens in the background
+
+---
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
-
----
-
-This README will be updated as new features are released and the project evolves.
+MIT — see [LICENSE](./LICENSE) for details.
